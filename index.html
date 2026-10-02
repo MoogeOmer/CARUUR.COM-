@@ -19,7 +19,7 @@
     <!-- Cloud Account Section -->
     <section class="space-y-3">
       <div class="flex items-center space-x-2 border-l-4 border-teal-500 pl-3">
-        <h2 class="text-xl font-bold text-slate-900">Akoonka Isticmaalaha (Cloud Account)</h2>
+        <h2 class="text-xl font-bold text-slate-900">Akoonka Isticmaalaha</h2>
       </div>
 
       <!-- Auth Container Box -->
@@ -152,6 +152,11 @@
     // Monitor Auth State Changes
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        // Change header title and hide toggle link when logged in
+        formTitle.textContent = "Akoonkaaga";
+        formDesc.textContent = "Waxaad si guul leh ugu jirtaa akoonkaaga.";
+        toggleModeBtn.parentElement.style.display = 'none';
+
         authMessage.textContent = '';
         authForm.innerHTML = `
           <div class="space-y-3 text-center py-2">
@@ -164,9 +169,13 @@
         document.getElementById('logout-btn').addEventListener('click', async () => {
           await signOut(auth);
         });
+      } else {
+        // Reset titles and show toggle link when logged out
+        formTitle.textContent = isLoginMode ? "Soo gal (Login)" : "Is-diiwaangeli (Sign Up)";
+        formDesc.textContent = isLoginMode ? "Geli xogtaada si aad akoonkaaga u gasho." : "Abuuri akoon daruuri ah si aad meel kasta uga gasho.";
+        toggleModeBtn.parentElement.style.display = 'block';
       }
     });
   </script>
 </body>
 </html>
-
