@@ -16,19 +16,32 @@
     </div>
 
     <!-- Top Right Nav / User Status Area -->
-    <div class="relative">
-      <button id="nav-user-btn" class="flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full transition text-sm font-semibold">
-        <span id="nav-user-label">Akoon</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.654 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      </button>
+    <div class="relative flex items-center space-x-2">
+      
+      <!-- Logged-Out Trigger Button & Dropdown -->
+      <div id="nav-logged-out-group" class="relative">
+        <button id="nav-user-btn" class="flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full transition text-sm font-semibold">
+          <span id="nav-user-label">Akoon</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.654 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </button>
 
-      <!-- Dropdown menu when logged out -->
-      <div id="nav-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white text-slate-800 rounded-xl shadow-lg border border-slate-100 p-2 space-y-1 z-50">
-        <button id="dropdown-login" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-lg hover:bg-slate-100 text-teal-600">Soo gal (Login)</button>
-        <button id="dropdown-signup" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-lg hover:bg-slate-100 text-rose-500">Is-diiwaangeli</button>
+        <!-- Dropdown menu when logged out -->
+        <div id="nav-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white text-slate-800 rounded-xl shadow-lg border border-slate-100 p-2 space-y-1 z-50">
+          <button id="dropdown-login" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-lg hover:bg-slate-100 text-teal-600">Soo gal (Login)</button>
+          <button id="dropdown-signup" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-lg hover:bg-slate-100 text-rose-500">Is-diiwaangeli</button>
+        </div>
       </div>
+
+      <!-- Logged-In Top Right Group (Username + Top Logout Button) -->
+      <div id="nav-logged-in-group" class="hidden flex items-center space-x-2">
+        <span id="nav-username-badge" class="text-xs font-bold bg-white/20 px-3 py-1.5 rounded-full"></span>
+        <button id="top-logout-btn" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow transition">
+          Ka Bax
+        </button>
+      </div>
+
     </div>
   </header>
 
@@ -66,11 +79,8 @@
           </div>
 
           <!-- Logged-In User Panel (Hidden when logged out) -->
-          <div id="logged-in-panel" class="hidden space-y-3 text-center py-2">
-            <p class="text-sm font-semibold text-slate-700">Soo dhowow, <span id="user-display-name" class="text-teal-600"></span>!</p>
-            <button id="logout-btn" class="w-full py-2.5 bg-rose-500 text-white font-semibold rounded-xl shadow-md hover:bg-rose-600 transition text-sm">
-              Ka Bax (Log Out)
-            </button>
+          <div id="logged-in-panel" class="hidden space-y-2 text-center py-2">
+            <p class="text-sm font-semibold text-slate-700">Soo dhowow,<br><span id="user-display-name" class="text-teal-600 font-bold"></span></p>
           </div>
 
         </div>
@@ -138,20 +148,28 @@
     const inputsWrapper = document.getElementById('inputs-wrapper');
     const loggedInPanel = document.getElementById('logged-in-panel');
     const userDisplayName = document.getElementById('user-display-name');
-    const logoutBtn = document.getElementById('logout-btn');
 
     // Nav elements
     const navUserBtn = document.getElementById('nav-user-btn');
     const navDropdown = document.getElementById('nav-dropdown');
     const dropdownLogin = document.getElementById('dropdown-login');
     const dropdownSignup = document.getElementById('dropdown-signup');
-    const navUserLabel = document.getElementById('nav-user-label');
+    const navLoggedOutGroup = document.getElementById('nav-logged-out-group');
+    const navLoggedInGroup = document.getElementById('nav-logged-in-group');
+    const navUsernameBadge = document.getElementById('nav-username-badge');
+    const topLogoutBtn = document.getElementById('top-logout-btn');
 
     let isLoginMode = false;
 
     // Toggle Dropdown Menu in Navbar
-    navUserBtn.addEventListener('click', () => {
+    navUserBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       navDropdown.classList.toggle('hidden');
+    });
+
+    // Close dropdown when clicking outside
+    window.addEventListener('click', () => {
+      navDropdown.classList.add('hidden');
     });
 
     dropdownLogin.addEventListener('click', () => {
@@ -218,14 +236,11 @@
         if (emailInput.value && passwordInput.value && !auth.currentUser) {
           try {
             await signInWithEmailAndPassword(auth, emailInput.value.trim(), passwordInput.value);
-          } catch (e) {
-            // Autofill mismatch or already handled
-          }
+          } catch (e) {}
         }
       }, 700);
     });
 
-    // Also check on manual input changes
     emailInput.addEventListener('input', checkAutofill);
     passwordInput.addEventListener('input', checkAutofill);
 
@@ -237,8 +252,8 @@
       }
     }
 
-    // Logout Action
-    logoutBtn.addEventListener('click', async () => {
+    // Top Logout Action
+    topLogoutBtn.addEventListener('click', async () => {
       try {
         await signOut(auth);
       } catch (error) {
@@ -251,10 +266,10 @@
       if (user) {
         const username = user.email.split('@')[0];
 
-        // Update Nav bar area
-        navUserLabel.textContent = username;
-        navDropdown.classList.add('hidden');
-        navUserBtn.classList.add('bg-teal-600', 'text-white');
+        // Switch Top Nav Bar to Logged-In Mode
+        navLoggedOutGroup.classList.add('hidden');
+        navLoggedInGroup.classList.remove('hidden');
+        navUsernameBadge.textContent = username;
 
         // Update Main Card Section
         formTitle.textContent = "Akoonkaaga";
@@ -266,9 +281,9 @@
         userDisplayName.textContent = user.email;
         authMessage.textContent = '';
       } else {
-        // Reset Nav bar area
-        navUserLabel.textContent = "Akoon";
-        navUserBtn.classList.remove('bg-teal-600', 'text-white');
+        // Switch Top Nav Bar back to Logged-Out Mode
+        navLoggedInGroup.classList.add('hidden');
+        navLoggedOutGroup.classList.remove('hidden');
 
         // Reset Main Card Section
         updateFormMode();
