@@ -10,62 +10,60 @@
 
   <!-- Header / Navbar Section -->
   <div>
-    <header class="bg-gradient-to-r from-orange-400 to-rose-400 text-white p-4 shadow-lg flex justify-between items-center rounded-b-3xl relative">
+    <header class="bg-gradient-to-r from-orange-400 to-rose-400 text-white p-5 shadow-lg flex justify-between items-center rounded-b-3xl relative">
       <div>
         <h1 class="text-2xl font-extrabold tracking-wide">Caruur.com</h1>
-        <p class="text-xs font-medium opacity-95">Sheekooyin Xikmad leh & Waxbarasho</p>
+        <p class="text-xs font-medium opacity-90">Sheekooyin Xikmad leh & Waxbarasho</p>
       </div>
 
       <!-- Top Right Nav / User Status Area -->
       <div class="relative">
-        <button id="nav-user-btn" class="flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full transition text-sm font-semibold">
+        <button id="nav-user-btn" class="flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-3.5 py-2 rounded-full transition text-sm font-semibold backdrop-blur-sm">
           <span id="nav-user-label">Akoon</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.654 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </button>
 
         <!-- Dropdown menu -->
-        <div id="nav-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white text-slate-800 rounded-xl shadow-lg border border-slate-100 p-2 space-y-1 z-50">
-          <!-- Logged-out options -->
+        <div id="nav-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white text-slate-800 rounded-2xl shadow-xl border border-slate-100 p-2 space-y-1 z-50">
           <div id="dropdown-logged-out-options">
-            <button id="dropdown-login" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-lg hover:bg-slate-100 text-teal-600">Soo gal (Login)</button>
-            <button id="dropdown-signup" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-lg hover:bg-slate-100 text-rose-500">Is-diiwaangeli</button>
+            <button id="dropdown-login" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-xl hover:bg-slate-50 text-teal-600">Soo gal (Login)</button>
+            <button id="dropdown-signup" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-xl hover:bg-slate-50 text-rose-500">Is-diiwaangeli</button>
           </div>
-          <!-- Logged-in option (Logout only) -->
           <div id="dropdown-logged-in-options" class="hidden">
-            <button id="dropdown-logout" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-lg hover:bg-rose-50 text-rose-600">Ka Bax (Log Out)</button>
+            <button id="dropdown-logout" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-xl hover:bg-rose-50 text-rose-600">Ka Bax (Log Out)</button>
           </div>
         </div>
       </div>
     </header>
 
-    <main class="max-w-md mx-auto p-4 space-y-6 mt-2">
+    <main class="max-w-md mx-auto p-4 space-y-6 mt-3">
       
-      <!-- Cloud Account Section -->
+      <!-- Cloud Account Section (Original Styled Box) -->
       <section class="space-y-3">
         <div class="flex items-center space-x-2 border-l-4 border-teal-500 pl-3">
-          <h2 class="text-xl font-bold text-slate-900">Akoonka Isticmaalaha</h2>
+          <h2 class="text-lg font-bold text-slate-900">Akoonka Isticmaalaha</h2>
         </div>
 
         <!-- Auth Container Box -->
-        <div id="auth-container" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
+        <div class="bg-white p-5 rounded-3xl shadow-sm border border-slate-100/80 space-y-4">
           
           <!-- Default Landing Header -->
-          <div id="default-landing-view">
-            <h3 class="text-lg font-bold text-teal-600">Soo dhowow!</h3>
-            <p class="text-xs text-slate-500 mt-1">Fadlan ka gal akoonkaaga badhanka sare ee midig ama is-diiwaangeli.</p>
+          <div id="default-landing-view" class="py-1">
+            <h3 class="text-base font-bold text-teal-600">Soo dhowow!</h3>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Fadlan ka gal akoonkaaga badhanka sare ee midig ama is-diiwaangeli si aad u bilowdo.</p>
           </div>
 
-          <!-- Form Header (Dynamic - Hidden by default) -->
-          <div id="form-header-view" class="hidden">
-            <h3 id="form-title" class="text-lg font-bold text-teal-600">Soo gal (Login)</h3>
+          <!-- Form Header (Hidden by default) -->
+          <div id="form-header-view" class="hidden py-1">
+            <h3 id="form-title" class="text-base font-bold text-teal-600">Soo gal (Login)</h3>
             <p id="form-desc" class="text-xs text-slate-500 mt-1">Geli xogtaada si aad akoonkaaga u gasho.</p>
           </div>
 
           <!-- Inputs and Actions Form (Hidden by default) -->
           <div id="auth-form" class="hidden space-y-3">
-            <div class="space-y-3">
+            <div class="space-y-2.5">
               <div>
                 <input type="email" id="email" autocomplete="email" placeholder="Email-kaaga" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-teal-500 text-sm bg-slate-50/50">
               </div>
@@ -77,7 +75,6 @@
               </button>
             </div>
 
-            <!-- Toggle Mode Link -->
             <div class="text-center pt-1">
               <button id="toggle-mode-btn" class="text-xs text-slate-500 hover:text-teal-600 font-medium">
                 Ma leedahay akoon cusub? <span class="text-teal-600 underline">Is-diiwaangeli (Sign Up)</span>
@@ -87,36 +84,36 @@
 
           <!-- Logged-In User Panel (Hidden when logged out) -->
           <div id="logged-in-panel" class="hidden space-y-3 text-center py-2">
-            <p class="text-sm font-semibold text-slate-700">Waxaad si guul leh ugu jirtaa akoonka:<br><span id="user-display-name" class="text-teal-600 font-bold"></span></p>
+            <p class="text-xs font-semibold text-slate-600">Waxaad si guul leh ugu jirtaa akoonka:<br><span id="user-display-name" class="text-teal-600 font-bold text-sm"></span></p>
             <button id="main-logout-btn" class="w-full py-2.5 bg-rose-500 text-white font-semibold rounded-xl shadow-md hover:bg-rose-600 transition text-sm">
               Ka Bax (Log Out)
             </button>
           </div>
 
           <!-- Feedback Message Area -->
-          <div id="auth-message" class="text-xs text-center font-medium mt-2"></div>
+          <div id="auth-message" class="text-xs text-center font-medium mt-1"></div>
         </div>
       </section>
 
       <!-- Stories Section (Cigaal Shidaad & More) -->
       <section class="space-y-3">
         <div class="border-l-4 border-teal-500 pl-3 flex justify-between items-center">
-          <h2 class="text-xl font-bold text-slate-900">Sheekooyinka Cigaal Shidaad & Xikmad</h2>
+          <h2 class="text-lg font-bold text-slate-900">Sheekooyinka Cigaal Shidaad</h2>
         </div>
         <div class="space-y-3">
           <!-- Story Card 1 -->
-          <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex flex-col space-y-2">
+          <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-100/80 flex flex-col space-y-2">
             <span class="text-[10px] font-bold text-orange-500 uppercase tracking-wider">Sheeko Qosol & Xikmad Leh</span>
-            <h3 class="font-bold text-slate-800 text-base">Cigaal Shidaad iyo Libaaxii</h3>
-            <p class="text-xs text-slate-500 line-clamp-2">Sheekadii caanka ahayd ee Cigaal iyo siduu uga baqay duurjoogta... Ka akhriso halkan qisooyinkiisa cajiibka ah.</p>
-            <button class="self-start text-xs font-semibold text-teal-600 hover:underline mt-1">Akhriso Sheekada &rarr;</button>
+            <h3 class="font-bold text-slate-800 text-sm">Cigaal Shidaad iyo Libaaxii</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">Sheekadii caanka ahayd ee Cigaal iyo siduu uga baqay duurjoogta... Ka akhriso halkan qisooyinkiisa cajiibka ah.</p>
+            <button class="self-start text-xs font-semibold text-teal-600 hover:underline pt-1">Akhriso Sheekada &rarr;</button>
           </div>
           <!-- Story Card 2 -->
-          <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex flex-col space-y-2">
+          <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-100/80 flex flex-col space-y-2">
             <span class="text-[10px] font-bold text-teal-600 uppercase tracking-wider">Anshax & Barasho</span>
-            <h3 class="font-bold text-slate-800 text-base">Wiilkii Beenta Sheegayay</h3>
-            <p class="text-xs text-slate-500 line-clamp-2">Sheeko xikmad leh oo carruurta baraysa muhiimada ay leedahay in runta la sheego mar walba.</p>
-            <button class="self-start text-xs font-semibold text-teal-600 hover:underline mt-1">Akhriso Sheekada &rarr;</button>
+            <h3 class="font-bold text-slate-800 text-sm">Wiilkii Beenta Sheegayay</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">Sheeko xikmad leh oo carruurta baraysa muhiimada ay leedahay in runta la sheego mar walba.</p>
+            <button class="self-start text-xs font-semibold text-teal-600 hover:underline pt-1">Akhriso Sheekada &rarr;</button>
           </div>
         </div>
       </section>
@@ -124,18 +121,18 @@
       <!-- PDF Section -->
       <section class="space-y-3">
         <div class="border-l-4 border-teal-500 pl-3">
-          <h2 class="text-xl font-bold text-slate-900">Qaybta PDF-yada (Books & PDFs)</h2>
+          <h2 class="text-lg font-bold text-slate-900">Qaybta PDF-yada (Books)</h2>
         </div>
-        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 space-y-3">
-          <div class="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+        <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-100/80 space-y-3">
+          <div class="flex items-center justify-between p-3 bg-slate-50/80 rounded-2xl border border-slate-100">
             <div class="flex items-center space-x-3">
-              <div class="bg-rose-100 text-rose-500 p-2.5 rounded-lg font-bold text-xs">PDF</div>
+              <div class="bg-rose-100 text-rose-500 p-2.5 rounded-xl font-extrabold text-xs">PDF</div>
               <div>
                 <h4 class="text-xs font-bold text-slate-800">Buugga Sheekooyinka Carruurta (Vol. 1)</h4>
                 <p class="text-[10px] text-slate-400">15 Bog • 2.4 MB</p>
               </div>
             </div>
-            <button class="px-3 py-1.5 bg-teal-500 text-white text-xs font-semibold rounded-lg shadow hover:bg-teal-600 transition">Soo Deji</button>
+            <button class="px-3 py-1.5 bg-teal-500 text-white text-xs font-semibold rounded-xl shadow-sm hover:bg-teal-600 transition">Soo Deji</button>
           </div>
         </div>
       </section>
@@ -143,18 +140,18 @@
       <!-- Games Section -->
       <section class="space-y-3">
         <div class="border-l-4 border-teal-500 pl-3">
-          <h2 class="text-xl font-bold text-slate-900">Ciyaaraha Carruurta (Games)</h2>
+          <h2 class="text-lg font-bold text-slate-900">Ciyaaraha Carruurta (Games)</h2>
         </div>
         <div class="grid grid-cols-2 gap-3">
-          <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 text-center space-y-2">
+          <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-100/80 text-center space-y-2">
             <div class="text-2xl">🧩</div>
             <h4 class="font-bold text-slate-800 text-xs">Xujooyinka Maskaxda</h4>
-            <button class="w-full py-1.5 bg-orange-50 text-orange-600 font-semibold text-xs rounded-xl hover:bg-orange-100 transition">Ciir</button>
+            <button class="w-full py-2 bg-orange-50 text-orange-600 font-semibold text-xs rounded-xl hover:bg-orange-100 transition">Ciir</button>
           </div>
-          <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 text-center space-y-2">
+          <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-100/80 text-center space-y-2">
             <div class="text-2xl">🎨</div>
             <h4 class="font-bold text-slate-800 text-xs">Midabaynta Sawirada</h4>
-            <button class="w-full py-1.5 bg-teal-50 text-teal-600 font-semibold text-xs rounded-xl hover:bg-teal-100 transition">Ciir</button>
+            <button class="w-full py-2 bg-teal-50 text-teal-600 font-semibold text-xs rounded-xl hover:bg-teal-100 transition">Ciir</button>
           </div>
         </div>
       </section>
@@ -197,7 +194,6 @@
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
 
-    // UI Elements
     const defaultLandingView = document.getElementById('default-landing-view');
     const formHeaderView = document.getElementById('form-header-view');
     const formTitle = document.getElementById('form-title');
@@ -213,7 +209,6 @@
     const userDisplayName = document.getElementById('user-display-name');
     const mainLogoutBtn = document.getElementById('main-logout-btn');
 
-    // Nav elements
     const navUserBtn = document.getElementById('nav-user-btn');
     const navDropdown = document.getElementById('nav-dropdown');
     const dropdownLogin = document.getElementById('dropdown-login');
@@ -225,7 +220,6 @@
 
     let isLoginMode = true;
 
-    // Toggle Dropdown Menu in Navbar
     navUserBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       navDropdown.classList.toggle('hidden');
@@ -235,7 +229,6 @@
       navDropdown.classList.add('hidden');
     });
 
-    // Show Login Form when clicked in dropdown
     dropdownLogin.addEventListener('click', () => {
       isLoginMode = true;
       showFormView();
@@ -243,7 +236,6 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Show Signup Form when clicked in dropdown
     dropdownSignup.addEventListener('click', () => {
       isLoginMode = false;
       showFormView();
@@ -263,14 +255,14 @@
       authMessage.textContent = '';
       if (isLoginMode) {
         formTitle.textContent = "Soo gal (Login)";
-        formTitle.className = "text-lg font-bold text-teal-600";
+        formTitle.className = "text-base font-bold text-teal-600";
         formDesc.textContent = "Geli xogtaada si aad akoonkaaga u gasho.";
         actionBtn.textContent = "Soo gal";
         actionBtn.className = "w-full py-2.5 bg-teal-500 text-white font-semibold rounded-xl shadow-md hover:bg-teal-600 transition text-sm";
         toggleModeBtn.innerHTML = `Ma leedahay akoon cusub? <span class="text-teal-600 underline">Is-diiwaangeli (Sign Up)</span>`;
       } else {
         formTitle.textContent = "Is-diiwaangeli (Sign Up)";
-        formTitle.className = "text-lg font-bold text-rose-500";
+        formTitle.className = "text-base font-bold text-rose-500";
         formDesc.textContent = "Abuuri akoon daruuri ah si aad meel kasta uga gasho.";
         actionBtn.textContent = "Is-diiwaangeli";
         actionBtn.className = "w-full py-2.5 bg-rose-500 text-white font-semibold rounded-xl shadow-md hover:bg-rose-600 transition text-sm";
@@ -283,14 +275,13 @@
       updateFormMode();
     });
 
-    // Handle Form Action Button Click
     actionBtn.addEventListener('click', async () => {
       const email = emailInput.value.trim();
       const password = passwordInput.value;
       authMessage.textContent = '';
 
       if (!email || !password) {
-        authMessage.className = "text-xs text-center font-medium mt-2 text-rose-500";
+        authMessage.className = "text-xs text-center font-medium mt-1 text-rose-500";
         authMessage.textContent = "Fadlan buuxi email-ka iyo furaha (password).";
         return;
       }
@@ -302,12 +293,11 @@
           await createUserWithEmailAndPassword(auth, email, password);
         }
       } catch (error) {
-        authMessage.className = "text-xs text-center font-medium mt-2 text-rose-600";
+        authMessage.className = "text-xs text-center font-medium mt-1 text-rose-600";
         authMessage.textContent = `Khalad: ${error.message}`;
       }
     });
 
-    // Logout Actions
     const handleLogout = async () => {
       try {
         await signOut(auth);
@@ -318,22 +308,18 @@
     mainLogoutBtn.addEventListener('click', handleLogout);
     dropdownLogout.addEventListener('click', handleLogout);
 
-    // Monitor Auth State Changes Live
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const username = user.email.split('@')[0];
-
-        // Update Nav bar area & dropdown options
         navUserLabel.textContent = username;
         navUserBtn.classList.add('bg-teal-600', 'text-white');
         dropdownLoggedOutOptions.classList.add('hidden');
         dropdownLoggedInOptions.classList.remove('hidden');
 
-        // Update Main Card Section for Logged-In State
         defaultLandingView.classList.add('hidden');
         formHeaderView.classList.remove('hidden');
         formTitle.textContent = "Akoonkaaga";
-        formTitle.className = "text-lg font-bold text-slate-900";
+        formTitle.className = "text-base font-bold text-slate-900";
         formDesc.textContent = "Waxaad si guul leh ugu jirtaa akoonkaaga.";
         authForm.classList.add('hidden');
         loggedInPanel.classList.remove('hidden');
@@ -341,13 +327,11 @@
         userDisplayName.textContent = user.email;
         authMessage.textContent = '';
       } else {
-        // Reset Nav bar area & dropdown options
         navUserLabel.textContent = "Akoon";
         navUserBtn.classList.remove('bg-teal-600', 'text-white');
         dropdownLoggedInOptions.classList.add('hidden');
         dropdownLoggedOutOptions.classList.remove('hidden');
 
-        // Reset Main Card Section back to clean landing state (no form showing)
         defaultLandingView.classList.remove('hidden');
         formHeaderView.classList.add('hidden');
         authForm.classList.add('hidden');
