@@ -212,18 +212,30 @@
       }
     });
 
-    // Auto-login / Autofill check: Listen to input changes from password manager
-    const handleAutofill = async () => {
+    // Auto-login: Check browser autofill values shortly after load
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(async () => {
+        if (emailInput.value && passwordInput.value && !auth.currentUser) {
+          try {
+            await signInWithEmailAndPassword(auth, emailInput.value.trim(), passwordInput.value);
+          } catch (e) {
+            // Autofill mismatch or already handled
+          }
+        }
+      }, 700);
+    });
+
+    // Also check on manual input changes
+    emailInput.addEventListener('input', checkAutofill);
+    passwordInput.addEventListener('input', checkAutofill);
+
+    async function checkAutofill() {
       if (emailInput.value && passwordInput.value && !auth.currentUser) {
         try {
           await signInWithEmailAndPassword(auth, emailInput.value.trim(), passwordInput.value);
-        } catch (e) {
-          // Ignore error during passive autofill triggers until manual submit
-        }
+        } catch (e) {}
       }
-    };
-    emailInput.addEventListener('input', handleAutofill);
-    passwordInput.addEventListener('input', handleAutofill);
+    }
 
     // Logout Action
     logoutBtn.addEventListener('click', async () => {
@@ -237,7 +249,6 @@
     // Monitor Auth State Changes Live
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // Extract username prefix from email (e.g. abdifatahaadanmooge)
         const username = user.email.split('@')[0];
 
         // Update Nav bar area
