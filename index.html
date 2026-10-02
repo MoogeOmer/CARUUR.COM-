@@ -50,17 +50,21 @@
       <!-- Auth Container Box -->
       <div id="auth-container" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
         
-        <!-- Form Header (Dynamic) -->
-        <div>
-          <h3 id="form-title" class="text-lg font-bold text-teal-600">Soo dhowow!</h3>
-          <p id="form-desc" class="text-xs text-slate-500 mt-1">Fadlan ka gal akoonkaaga badhanka sare ee midig ama is-diiwaangeli.</p>
+        <!-- Default Landing Header (Shown when not interacting with form) -->
+        <div id="default-landing-view">
+          <h3 class="text-lg font-bold text-teal-600">Soo dhowow!</h3>
+          <p class="text-xs text-slate-500 mt-1">Fadlan ka gal akoonkaaga badhanka sare ee midig ama is-diiwaangeli.</p>
         </div>
 
-        <!-- Inputs and Actions Form (Hidden by default on main view) -->
+        <!-- Form Header (Dynamic - Hidden by default) -->
+        <div id="form-header-view" class="hidden">
+          <h3 id="form-title" class="text-lg font-bold text-teal-600">Soo gal (Login)</h3>
+          <p id="form-desc" class="text-xs text-slate-500 mt-1">Geli xogtaada si aad akoonkaaga u gasho.</p>
+        </div>
+
+        <!-- Inputs and Actions Form (Hidden by default) -->
         <div id="auth-form" class="hidden space-y-3">
-          
-          <!-- Inputs Wrapper -->
-          <div id="inputs-wrapper" class="space-y-3">
+          <div class="space-y-3">
             <div>
               <input type="email" id="email" autocomplete="email" placeholder="Email-kaaga" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-teal-500 text-sm bg-slate-50/50">
             </div>
@@ -73,7 +77,7 @@
           </div>
 
           <!-- Toggle Mode Link -->
-          <div id="toggle-container" class="text-center pt-1">
+          <div class="text-center pt-1">
             <button id="toggle-mode-btn" class="text-xs text-slate-500 hover:text-teal-600 font-medium">
               Ma leedahay akoon cusub? <span class="text-teal-600 underline">Is-diiwaangeli (Sign Up)</span>
             </button>
@@ -132,12 +136,13 @@
     const auth = getAuth(app);
 
     // UI Elements
+    const defaultLandingView = document.getElementById('default-landing-view');
+    const formHeaderView = document.getElementById('form-header-view');
     const formTitle = document.getElementById('form-title');
     const formDesc = document.getElementById('form-desc');
     const authForm = document.getElementById('auth-form');
     const actionBtn = document.getElementById('action-btn');
     const toggleModeBtn = document.getElementById('toggle-mode-btn');
-    const toggleContainer = document.getElementById('toggle-container');
     const authMessage = document.getElementById('auth-message');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
@@ -164,38 +169,47 @@
       navDropdown.classList.toggle('hidden');
     });
 
-    // Close dropdown when clicking outside
     window.addEventListener('click', () => {
       navDropdown.classList.add('hidden');
     });
 
+    // Show Login Form when clicked in dropdown
     dropdownLogin.addEventListener('click', () => {
       isLoginMode = true;
-      updateFormMode();
-      authForm.classList.remove('hidden');
-      formTitle.textContent = "Soo gal (Login)";
-      formDesc.textContent = "Geli xogtaada si aad akoonkaaga u gasho.";
+      showFormView();
       navDropdown.classList.add('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // Show Signup Form when clicked in dropdown
     dropdownSignup.addEventListener('click', () => {
       isLoginMode = false;
-      updateFormMode();
-      authForm.classList.remove('hidden');
-      formTitle.textContent = "Is-diiwaangeli (Sign Up)";
-      formDesc.textContent = "Abuuri akoon daruuri ah si aad meel kasta uga gasho.";
+      showFormView();
       navDropdown.classList.add('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    function showFormView() {
+      defaultLandingView.classList.add('hidden');
+      formHeaderView.classList.remove('hidden');
+      authForm.classList.remove('hidden');
+      loggedInPanel.classList.add('hidden');
+      updateFormMode();
+    }
 
     function updateFormMode() {
       authMessage.textContent = '';
       if (isLoginMode) {
+        formTitle.textContent = "Soo gal (Login)";
+        formTitle.className = "text-lg font-bold text-teal-600";
+        formDesc.textContent = "Geli xogtaada si aad akoonkaaga u gasho.";
         actionBtn.textContent = "Soo gal";
         actionBtn.className = "w-full py-2.5 bg-teal-500 text-white font-semibold rounded-xl shadow-md hover:bg-teal-600 transition text-sm";
         toggleModeBtn.innerHTML = `Ma leedahay akoon cusub? <span class="text-teal-600 underline">Is-diiwaangeli (Sign Up)</span>`;
       } else {
+        formTitle.textContent = "Is-diiwaangeli (Sign Up)";
+        formTitle.className = "text-lg font-bold text-rose-500";
+        formDesc.textContent = "Abuuri akoon daruuri ah si aad meel kasta uga gasho.";
         actionBtn.textContent = "Is-diiwaangeli";
         actionBtn.className = "w-full py-2.5 bg-rose-500 text-white font-semibold rounded-xl shadow-md hover:bg-rose-600 transition text-sm";
         toggleModeBtn.innerHTML = `Ma leedahay akoon hore? <span class="text-teal-600 underline">Soo gal (Login)</span>`;
@@ -205,13 +219,6 @@
     toggleModeBtn.addEventListener('click', () => {
       isLoginMode = !isLoginMode;
       updateFormMode();
-      if (isLoginMode) {
-        formTitle.textContent = "Soo gal (Login)";
-        formDesc.textContent = "Geli xogtaada si aad akoonkaaga u gasho.";
-      } else {
-        formTitle.textContent = "Is-diiwaangeli (Sign Up)";
-        formDesc.textContent = "Abuuri akoon daruuri ah si aad meel kasta uga gasho.";
-      }
     });
 
     // Handle Form Action Button Click
@@ -261,7 +268,10 @@
         dropdownLoggedInOptions.classList.remove('hidden');
 
         // Update Main Card Section for Logged-In State
+        defaultLandingView.classList.add('hidden');
+        formHeaderView.classList.remove('hidden');
         formTitle.textContent = "Akoonkaaga";
+        formTitle.className = "text-lg font-bold text-slate-900";
         formDesc.textContent = "Waxaad si guul leh ugu jirtaa akoonkaaga.";
         authForm.classList.add('hidden');
         loggedInPanel.classList.remove('hidden');
@@ -275,9 +285,9 @@
         dropdownLoggedInOptions.classList.add('hidden');
         dropdownLoggedOutOptions.classList.remove('hidden');
 
-        // Reset Main Card Section (Hidden by default until user clicks Login/Signup in menu)
-        formTitle.textContent = "Soo dhowow!";
-        formDesc.textContent = "Fadlan ka gal akoonkaaga badhanka sare ee midig ama is-diiwaangeli.";
+        // Reset Main Card Section back to clean landing state (no form showing)
+        defaultLandingView.classList.remove('hidden');
+        formHeaderView.classList.add('hidden');
         authForm.classList.add('hidden');
         loggedInPanel.classList.add('hidden');
         emailInput.value = '';
