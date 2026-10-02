@@ -1,497 +1,308 @@
 <!DOCTYPE html>
 <html lang="so">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caruur.com - Sheekooyin iyo Madadaalo Carruureed</title>
-    <!-- Google Fonts for a friendly, playful look -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome for User Icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary: #FF6B6B;
-            --secondary: #4ECDC4;
-            --accent: #FFE66D;
-            --dark: #2D3748;
-            --light: #F7FAFC;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary), #FF8E53);
-            color: white;
-            padding: 2.5rem 1rem 2rem 1rem;
-            text-align: center;
-            border-bottom-left-radius: 35px;
-            border-bottom-right-radius: 35px;
-            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.2);
-            position: relative;
-        }
-
-        /* Top Header Navigation (Logo area & Auth Button inside header) */
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 900px;
-            margin: 0 auto 1.5rem auto;
-            padding: 0 1rem;
-        }
-
-        .brand-logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .user-auth-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .user-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: none;
-            border: 2px solid white;
-        }
-
-        .auth-btn {
-            background: white;
-            color: var(--primary);
-            padding: 0.5rem 1.1rem;
-            border-radius: 20px;
-            border: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .auth-btn:hover {
-            background: #f7fafc;
-            transform: translateY(-2px);
-        }
-
-        .auth-btn.logout {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .auth-btn.logout:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-            font-weight: 400;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1000px;
-            margin: 2.5rem auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Section Styling */
-        .section-box {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2.5rem;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-            border: 1px solid rgba(0,0,0,0.02);
-        }
-
-        /* Section Titles */
-        h2 {
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-            font-size: 1.5rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        h2::before {
-            content: "";
-            display: inline-block;
-            width: 6px;
-            height: 24px;
-            background: var(--secondary);
-            border-radius: 4px;
-        }
-
-        .vip-section h2::before {
-            background: var(--primary);
-        }
-
-        /* Cards Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .card {
-            background: #fafbfc;
-            border: 1px solid #edf2f7;
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            border-color: rgba(78, 205, 196, 0.3);
-        }
-
-        .card.premium {
-            background: #fffdf4;
-            border: 2px solid var(--accent);
-        }
-
-        .card.premium:hover {
-            border-color: var(--primary);
-        }
-
-        .card.premium::after {
-            content: "👑 VIP";
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--accent);
-            color: #745b00;
-            padding: 3px 10px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            border-radius: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .card h3 {
-            margin-bottom: 0.75rem;
-            color: var(--primary);
-            font-size: 1.2rem;
-            padding-right: 40px;
-        }
-
-        .card p {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--secondary);
-            color: white;
-            padding: 0.7rem 1.2rem;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s;
-            text-align: center;
-            width: 100%;
-            box-shadow: 0 4px 10px rgba(78, 205, 196, 0.2);
-        }
-
-        .btn:hover {
-            background: #3bbcb3;
-            transform: translateY(-1px);
-        }
-
-        .btn-premium {
-            background: var(--primary);
-            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.2);
-        }
-
-        .btn-premium:hover {
-            background: #e05555;
-        }
-
-        /* Modal Popup for Payment */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 2.5rem 2rem;
-            border-radius: 20px;
-            max-width: 420px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            animation: modalPop 0.3s ease;
-        }
-
-        @keyframes modalPop {
-            0% { transform: scale(0.9); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .modal-content h3 {
-            margin-bottom: 1rem;
-            color: var(--primary);
-            font-size: 1.4rem;
-        }
-
-        .modal-content p {
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            color: #555;
-            text-align: left;
-            background: #f8fafc;
-            padding: 1rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--primary);
-            line-height: 1.5;
-        }
-
-        .close-btn {
-            background: #edf2f7;
-            color: #4a5568;
-            margin-top: 0.75rem;
-            width: 100%;
-            box-shadow: none;
-        }
-        
-        .close-btn:hover {
-            background: #e2e8f0;
-        }
-        
-        .whatsapp-btn {
-            background: #25D366;
-            width: 100%;
-            margin-bottom: 0.5rem;
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
-        }
-        
-        .whatsapp-btn:hover {
-            background: #1ebe5d;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #888;
-            font-size: 0.9rem;
-            border-top: 1px solid #eaeaea;
-            background: white;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caruur.com - Sheekooyin & Waxbarasho</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen">
 
-    <header>
-        <!-- Header Top: Logo on left, User Icon/Login button on right -->
-        <div class="header-top">
-            <div class="brand-logo">
-                <span>Caruur.com 🎈</span>
-            </div>
-            <div class="user-auth-container">
-                <img id="userAvatar" class="user-avatar" src="" alt="User Avatar">
-                <span id="userName" style="font-weight: 600; font-size: 0.9rem; display:none;"></span>
-                <button id="authBtn" class="auth-btn" onclick="toggleAuth()">
-                    <i class="fa-solid fa-user"></i> Gal (Sign In)
-                </button>
-            </div>
+  <!-- Header / Navbar Section -->
+  <header class="bg-gradient-to-r from-orange-400 to-rose-400 text-white p-4 shadow-lg flex justify-between items-center rounded-b-3xl relative">
+    <div>
+      <h1 class="text-2xl font-extrabold tracking-wide">Caruur.com</h1>
+      <p class="text-xs font-medium opacity-95">Sheekooyin Xikmad leh & Waxbarasho</p>
+    </div>
+
+    <!-- Top Right Nav / User Status Area -->
+    <div class="relative">
+      <button id="nav-user-btn" class="flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full transition text-sm font-semibold">
+        <span id="nav-user-label">Akoon</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.654 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </button>
+
+      <!-- Dropdown menu -->
+      <div id="nav-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white text-slate-800 rounded-xl shadow-lg border border-slate-100 p-2 space-y-1 z-50">
+        <!-- Logged-out options -->
+        <div id="dropdown-logged-out-options">
+          <button id="dropdown-login" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-lg hover:bg-slate-100 text-teal-600">Soo gal (Login)</button>
+          <button id="dropdown-signup" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-lg hover:bg-slate-100 text-rose-500">Is-diiwaangeli</button>
         </div>
+        <!-- Logged-in option (Logout only) -->
+        <div id="dropdown-logged-in-options" class="hidden">
+          <button id="dropdown-logout" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-lg hover:bg-rose-50 text-rose-600">Ka Bax (Log Out)</button>
+        </div>
+      </div>
+    </div>
+  </header>
 
-        <h1>Caruur.com 🎈</h1>
-        <p>Sheekooyin Xikmad leh, Madadaalo iyo Waxbarasho Carruureed!</p>
-    </header>
+  <main class="max-w-md mx-auto p-4 space-y-6 mt-4">
+    
+    <!-- Cloud Account Section -->
+    <section class="space-y-3">
+      <div class="flex items-center space-x-2 border-l-4 border-teal-500 pl-3">
+        <h2 class="text-xl font-bold text-slate-900">Akoonka Isticmaalaha</h2>
+      </div>
 
-    <div class="container">
+      <!-- Auth Container Box -->
+      <div id="auth-container" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
         
-        <!-- Free Section -->
-        <div class="section-box">
-            <h2>Sheekooyinka Bilaashka ah</h2>
-            <div class="grid">
-                <div class="card">
-                    <div>
-                        <h3>Cigaal Shidaad: Ninkii Cabsanaa</h3>
-                        <p>Sheekada qosolka iyo casharka badan ee geesinimada carruurta la barayo.</p>
-                    </div>
-                    <button class="btn" onclick="alert('Ku raaxayso sheekada! (Bilaash)')">Dhageyso Sheekada</button>
-                </div>
-                <div class="card">
-                    <div>
-                        <h3>Bogga Rinjiyeynta Xarfaha</h3>
-                        <p>Soo deji warqadaha midabaynta ee xarfaha Af-Soomaaliga.</p>
-                    </div>
-                    <button class="btn" onclick="alert('Warqaddii way soo degaysaa...')">Soo Deji PDF</button>
-                </div>
+        <!-- Default Landing Header (Shown when not interacting with form) -->
+        <div id="default-landing-view">
+          <h3 class="text-lg font-bold text-teal-600">Soo dhowow!</h3>
+          <p class="text-xs text-slate-500 mt-1">Fadlan ka gal akoonkaaga badhanka sare ee midig ama is-diiwaangeli.</p>
+        </div>
+
+        <!-- Form Header (Dynamic - Hidden by default) -->
+        <div id="form-header-view" class="hidden">
+          <h3 id="form-title" class="text-lg font-bold text-teal-600">Soo gal (Login)</h3>
+          <p id="form-desc" class="text-xs text-slate-500 mt-1">Geli xogtaada si aad akoonkaaga u gasho.</p>
+        </div>
+
+        <!-- Inputs and Actions Form (Hidden by default) -->
+        <form id="auth-form" class="hidden space-y-3" onsubmit="return false;">
+          <div class="space-y-3">
+            <div>
+              <input type="email" id="email" autocomplete="email" placeholder="Email-kaaga" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-teal-500 text-sm bg-slate-50/50">
             </div>
-        </div>
-
-        <!-- Premium VIP Section -->
-        <div class="section-box vip-section">
-            <h2>Qasnadda VIP (Premium) 👑</h2>
-            <div class="grid">
-                <div class="card premium">
-                    <div>
-                        <h3>Ururinta Sheekooyinka Dhaqanka & Caaradii</h3>
-                        <p>Fur 20+ sheekooyin maca-macaan oo maqal iyo muuqaal ah oo gaar ah.</p>
-                    </div>
-                    <button class="btn btn-premium" onclick="openModal('Sheekooyinka Dhaqanka (150 ETB)')">Fur 150 ETB</button>
-                </div>
-                <div class="card premium">
-                    <div>
-                        <h3>Buugga Xisaabta iyo Maskax-maal</h3>
-                        <p>50 bog oo ah jimicsiyo iyo su'aalo caqli-tiirsi ah oo carruurta kor u qaadaya.</p>
-                    </div>
-                    <button class="btn btn-premium" onclick="openModal('Buugga Xisaabta (100 ETB)')">Fur 100 ETB</button>
-                </div>
+            <div>
+              <input type="password" id="password" autocomplete="current-password" placeholder="Furahaaga (Password)" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-teal-500 text-sm bg-slate-50/50">
             </div>
+            <button type="button" id="action-btn" class="w-full py-2.5 bg-teal-500 text-white font-semibold rounded-xl shadow-md hover:bg-teal-600 transition text-sm">
+              Soo gal
+            </button>
+          </div>
+
+          <!-- Toggle Mode Link -->
+          <div class="text-center pt-1">
+            <button type="button" id="toggle-mode-btn" class="text-xs text-slate-500 hover:text-teal-600 font-medium">
+              Ma leedahay akoon cusub? <span class="text-teal-600 underline">Is-diiwaangeli (Sign Up)</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Logged-In User Panel (Hidden when logged out) -->
+        <div id="logged-in-panel" class="hidden space-y-3 text-center py-2">
+          <p class="text-sm font-semibold text-slate-700">Waxaad si guul leh ugu jirtaa akoonka:<br><span id="user-display-name" class="text-teal-600 font-bold"></span></p>
+          <button id="main-logout-btn" class="w-full py-2.5 bg-rose-500 text-white font-semibold rounded-xl shadow-md hover:bg-rose-600 transition text-sm">
+            Ka Bax (Log Out)
+          </button>
         </div>
 
-    </div>
+        <!-- Feedback Message Area -->
+        <div id="auth-message" class="text-xs text-center font-medium mt-2"></div>
+      </div>
+    </section>
 
-    <!-- Payment Modal (Updated with your Ebirr info: 0905445005 - Mooge Omer Eman) -->
-    <div id="paymentModal" class="modal">
-        <div class="modal-content">
-            <h3>Ebirr / Telebirr & Lacag-bixinta</h3>
-            <p id="modalText">Ku wareeji lacagta Ebirr/Telebirr: <strong>0905445005</strong> (Mooge Omer Eman).<br><br>Intaa kadib, guji batoonka hoose si aad WhatsApp ugu soo dirto fariinta xaqiijinta (Receipt) si aad u hesho koodkaaga VIP-da!</p>
-            
-            <a id="whatsappLink" href="https://wa.me/251987103141?text=Asc%2C%20waxaan%20bixiyay%20lacagtii%20Caruur.com.%20Fadlan%20ii%20soo%20dir%20koodka%20VIP-da." target="_blank" class="btn whatsapp-btn">WhatsApp-ka Noogu Soo Dir (+251987103141)</a>
-            
-            <button class="btn close-btn" onclick="closeModal()">Xir / Close</button>
-        </div>
-    </div>
+    <!-- Free Stories Section -->
+    <section class="space-y-3">
+      <div class="border-l-4 border-teal-500 pl-3">
+        <h2 class="text-xl font-bold text-slate-900">Sheekooyinka Bilaashka ah</h2>
+      </div>
+      <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 text-slate-500 text-sm">
+        Halkan waxaa ku jira sheekooyinka carruurta ee aad lacag la'aanta ku akhrisan karto...
+      </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2026 Caruur.com. Xuquuqda oo dhan waa dhowran tahay.</p>
-    </footer>
+  </main>
 
-    <!-- Firebase SDK Scripts with Authentication Enabled -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+  <!-- Firebase Logic Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+    import { 
+      getAuth, 
+      createUserWithEmailAndPassword, 
+      signInWithEmailAndPassword, 
+      signOut, 
+      onAuthStateChanged 
+    } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
-        // Your exact Firebase configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyBYIOzKPhH7FKwVMnF2DZGdxKnyJ_hUjEc",
-          authDomain: "caruur-7a8ed.firebaseapp.com",
-          projectId: "caruur-7a8ed",
-          storageBucket: "caruur-7a8ed.firebasestorage.app",
-          messagingSenderId: "586260137951",
-          appId: "1:586260137951:web:1fd58321b963a6dcffe66a",
-          measurementId: "G-X4RYC2YKDV"
-        };
+    const firebaseConfig = {
+      apiKey: "AIzaSyBYIOzKPhH7FKwVMnF2DZGdxKnyJ_hUjEc",
+      authDomain: "caruur-7a8ed.firebaseapp.com",
+      projectId: "caruur-7a8ed",
+      storageBucket: "caruur-7a8ed.firebasestorage.app",
+      messagingSenderId: "586260137951",
+      appId: "1:586260137951:web:1fd58321b963a6dcffe66a",
+      measurementId: "G-X4RYC2YKDV"
+    };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const auth = getAuth(app);
-        const provider = new GoogleAuthProvider();
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
 
-        const authBtn = document.getElementById('authBtn');
-        const userAvatar = document.getElementById('userAvatar');
-        const userName = document.getElementById('userName');
+    // UI Elements
+    const defaultLandingView = document.getElementById('default-landing-view');
+    const formHeaderView = document.getElementById('form-header-view');
+    const formTitle = document.getElementById('form-title');
+    const formDesc = document.getElementById('form-desc');
+    const authForm = document.getElementById('auth-form');
+    const actionBtn = document.getElementById('action-btn');
+    const toggleModeBtn = document.getElementById('toggle-mode-btn');
+    const authMessage = document.getElementById('auth-message');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    
+    const loggedInPanel = document.getElementById('logged-in-panel');
+    const userDisplayName = document.getElementById('user-display-name');
+    const mainLogoutBtn = document.getElementById('main-logout-btn');
 
-        // Toggle Login / Logout function
-        window.toggleAuth = function() {
-            const user = auth.currentUser;
-            if (!user) {
-                signInWithPopup(auth, provider).catch((error) => {
-                    console.log("Popup blocked or failed, trying redirect...", error);
-                    signInWithRedirect(auth, provider);
-                });
-            } else {
-                signOut(auth).catch((error) => {
-                    console.error("Logout error:", error);
-                });
-            }
-        };
+    // Nav elements
+    const navUserBtn = document.getElementById('nav-user-btn');
+    const navDropdown = document.getElementById('nav-dropdown');
+    const dropdownLogin = document.getElementById('dropdown-login');
+    const dropdownSignup = document.getElementById('dropdown-signup');
+    const dropdownLogout = document.getElementById('dropdown-logout');
+    const dropdownLoggedOutOptions = document.getElementById('dropdown-logged-out-options');
+    const dropdownLoggedInOptions = document.getElementById('dropdown-logged-in-options');
+    const navUserLabel = document.getElementById('nav-user-label');
 
-        // Monitor Auth State Changes
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                userName.textContent = user.displayName || "User";
-                userName.style.display = 'inline';
-                if (user.photoURL) {
-                    userAvatar.src = user.photoURL;
-                    userAvatar.style.display = 'block';
-                }
-                authBtn.innerHTML = `<i class="fa-solid fa-right-from-bracket"></i> Ka bax`;
-                authBtn.className = "auth-btn logout";
-            } else {
-                userName.textContent = "";
-                userName.style.display = 'none';
-                userAvatar.src = "";
-                userAvatar.style.display = 'none';
-                authBtn.innerHTML = `<i class="fa-solid fa-user"></i> Gal (Sign In)`;
-                authBtn.className = "auth-btn";
-            }
-        });
-    </script>
+    let isLoginMode = true;
 
-    <script>
-        function openModal(packageName) {
-            document.getElementById('paymentModal').style.display = 'flex';
+    // Toggle Dropdown Menu in Navbar
+    navUserBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navDropdown.classList.toggle('hidden');
+    });
+
+    window.addEventListener('click', () => {
+      navDropdown.classList.add('hidden');
+    });
+
+    // Show Login Form when clicked in dropdown
+    dropdownLogin.addEventListener('click', () => {
+      isLoginMode = true;
+      showFormView();
+      navDropdown.classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Show Signup Form when clicked in dropdown
+    dropdownSignup.addEventListener('click', () => {
+      isLoginMode = false;
+      showFormView();
+      navDropdown.classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    function showFormView() {
+      defaultLandingView.classList.add('hidden');
+      formHeaderView.classList.remove('hidden');
+      authForm.classList.remove('hidden');
+      loggedInPanel.classList.add('hidden');
+      updateFormMode();
+    }
+
+    function updateFormMode() {
+      authMessage.textContent = '';
+      if (isLoginMode) {
+        formTitle.textContent = "Soo gal (Login)";
+        formTitle.className = "text-lg font-bold text-teal-600";
+        formDesc.textContent = "Geli xogtaada si aad akoonkaaga u gasho.";
+        actionBtn.textContent = "Soo gal";
+        actionBtn.className = "w-full py-2.5 bg-teal-500 text-white font-semibold rounded-xl shadow-md hover:bg-teal-600 transition text-sm";
+        toggleModeBtn.innerHTML = `Ma leedahay akoon cusub? <span class="text-teal-600 underline">Is-diiwaangeli (Sign Up)</span>`;
+      } else {
+        formTitle.textContent = "Is-diiwaangeli (Sign Up)";
+        formTitle.className = "text-lg font-bold text-rose-500";
+        formDesc.textContent = "Abuuri akoon daruuri ah si aad meel kasta uga gasho.";
+        actionBtn.textContent = "Is-diiwaangeli";
+        actionBtn.className = "w-full py-2.5 bg-rose-500 text-white font-semibold rounded-xl shadow-md hover:bg-rose-600 transition text-sm";
+        toggleModeBtn.innerHTML = `Ma leedahay akoon hore? <span class="text-teal-600 underline">Soo gal (Login)</span>`;
+      }
+    }
+
+    toggleModeBtn.addEventListener('click', () => {
+      isLoginMode = !isLoginMode;
+      updateFormMode();
+    });
+
+    // Handle Form Action Button Click (Login / Sign Up)
+    const handleAuthAction = async () => {
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      authMessage.textContent = '';
+
+      if (!email || !password) {
+        authMessage.className = "text-xs text-center font-medium mt-2 text-rose-500";
+        authMessage.textContent = "Fadlan buuxi email-ka iyo furaha (password).";
+        return;
+      }
+
+      try {
+        if (isLoginMode) {
+          await signInWithEmailAndPassword(auth, email, password);
+        } else {
+          await createUserWithEmailAndPassword(auth, email, password);
         }
+      } catch (error) {
+        authMessage.className = "text-xs text-center font-medium mt-2 text-rose-600";
+        authMessage.textContent = `Khalad: ${error.message}`;
+      }
+    };
 
-        function closeModal() {
-            document.getElementById('paymentModal').style.display = 'none';
-        }
-    </script>
+    actionBtn.addEventListener('click', handleAuthAction);
+    
+    // Also allow pressing Enter inside inputs to submit
+    passwordInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        handleAuthAction();
+      }
+    });
 
+    // Logout Actions
+    const handleLogout = async () => {
+      try {
+        await signOut(auth);
+      } catch (error) {
+        console.error("Logout error", error);
+      }
+    };
+    mainLogoutBtn.addEventListener('click', handleLogout);
+    dropdownLogout.addEventListener('click', handleLogout);
+
+    // Monitor Auth State Changes Live
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const username = user.email.split('@')[0];
+
+        // Update Nav bar area & dropdown options
+        navUserLabel.textContent = username;
+        navUserBtn.classList.add('bg-teal-600', 'text-white');
+        dropdownLoggedOutOptions.classList.add('hidden');
+        dropdownLoggedInOptions.classList.remove('hidden');
+
+        // Update Main Card Section for Logged-In State
+        defaultLandingView.classList.add('hidden');
+        formHeaderView.classList.remove('hidden');
+        formTitle.textContent = "Akoonkaaga";
+        formTitle.className = "text-lg font-bold text-slate-900";
+        formDesc.textContent = "Waxaad si guul leh ugu jirtaa akoonkaaga.";
+        authForm.classList.add('hidden');
+        loggedInPanel.classList.remove('hidden');
+
+        userDisplayName.textContent = user.email;
+        authMessage.textContent = '';
+      } else {
+        // Reset Nav bar area & dropdown options
+        navUserLabel.textContent = "Akoon";
+        navUserBtn.classList.remove('bg-teal-600', 'text-white');
+        dropdownLoggedInOptions.classList.add('hidden');
+        dropdownLoggedOutOptions.classList.remove('hidden');
+
+        // Reset Main Card Section back to clean landing state (no form showing)
+        defaultLandingView.classList.remove('hidden');
+        formHeaderView.classList.add('hidden');
+        authForm.classList.add('hidden');
+        loggedInPanel.classList.add('hidden');
+        emailInput.value = '';
+        passwordInput.value = '';
+      }
+    });
+  </script>
 </body>
 </html>
