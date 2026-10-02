@@ -221,6 +221,21 @@
             </div>
         </div>
 
+        <!-- Mini-Game Section with Speech Support -->
+        <h2>Cayaarta Carruurta: Isku-begsiinta Xayawaanka 🦁</h2>
+        <div class="card" style="margin-bottom: 3rem;">
+            <h3>Xulo Xayawaanka saxda ah!</h3>
+            <p id="game-question">Waa kuma xayawaanka culus ee keynta jooga ee leh jirka weyn?</p>
+            
+            <div id="game-options" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 15px 0;">
+                <button class="btn" onclick="speakText('Libaax'); checkAnswer('libaax')">Libaax 🔊</button>
+                <button class="btn" onclick="speakText('Maroodi'); checkAnswer('maroodi')">Maroodi 🔊</button>
+                <button class="btn" onclick="speakText('Daanyeer'); checkAnswer('daanyeer')">Daanyeer 🔊</button>
+            </div>
+            
+            <p id="game-feedback" style="font-weight: bold; text-align: center; margin-top: 10px;"></p>
+        </div>
+
         <!-- Premium VIP Section -->
         <h2>Qasnadda VIP (Premium) 👑</h2>
         <div class="grid">
@@ -261,6 +276,28 @@
 
         function closeModal() {
             document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        // Mini-game check answer logic
+        function checkAnswer(selected) {
+            const feedback = document.getElementById('game-feedback');
+            if (selected === 'maroodi') {
+                feedback.style.color = '#27ae60';
+                feedback.textContent = 'Hambalyo! Way sax tahay! 🎉 Waa Maroodi.';
+            } else {
+                feedback.style.color = '#c0392b';
+                feedback.textContent = 'Waa khalad! Dib u dayisnow. ❌';
+            }
+        }
+
+        // Web Speech API for pronunciation
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'so-SO'; 
+                utterance.rate = 0.9; 
+                window.speechSynthesis.speak(utterance);
+            }
         }
     </script>
 
