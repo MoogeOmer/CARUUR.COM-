@@ -419,43 +419,37 @@
         <p>&copy; 2026 Caruur.com. Xuquuqda oo dhan waa dhowran tahay.</p>
     </footer>
 
-    <!-- Firebase SDK Scripts -->
+    <!-- Firebase SDK Scripts with Authentication Enabled -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
         import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-        // Firebase Configuration (Hubi in xogtaadu ay sax tahay ama bedel halkaan)
+        // Your exact Firebase configuration
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
+          apiKey: "AIzaSyBYIOzKPhH7FKwVMnF2DZGdxKnyJ_hUjEc",
+          authDomain: "caruur-7a8ed.firebaseapp.com",
+          projectId: "caruur-7a8ed",
+          storageBucket: "caruur-7a8ed.firebasestorage.app",
+          messagingSenderId: "586260137951",
+          appId: "1:586260137951:web:1fd58321b963a6dcffe66a",
+          measurementId: "G-X4RYC2YKDV"
         };
 
-        let app, auth, provider;
-        try {
-            app = initializeApp(firebaseConfig);
-            auth = getAuth(app);
-            provider = new GoogleAuthProvider();
-        } catch (e) {
-            console.error("Firebase initialization error:", e);
-        }
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
 
         const authBtn = document.getElementById('authBtn');
         const userAvatar = document.getElementById('userAvatar');
         const userName = document.getElementById('userName');
 
-        // Sababta badhanka u shaqayn waayay waxay inta badan noqotaa popup-ka oo la xannibo ama Firebase oo aan la qorshayn. Halkan waxaan ku darnay qaab ammaan ah:
+        // Toggle Login / Logout function
         window.toggleAuth = function() {
-            if (!auth) {
-                alert("Fadlan ku dar xogtaada saxda ah ee Firebase (Firebase Config) koodkaaga dhexdiisa!");
-                return;
-            }
             const user = auth.currentUser;
             if (!user) {
-                // Isticmaal popup, haddii uu fashilmo ama la xannibo wuxuu isticmaali karaa redirect
                 signInWithPopup(auth, provider).catch((error) => {
                     console.log("Popup blocked or failed, trying redirect...", error);
                     signInWithRedirect(auth, provider);
@@ -468,27 +462,25 @@
         };
 
         // Monitor Auth State Changes
-        if (auth) {
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    userName.textContent = user.displayName || "User";
-                    userName.style.display = 'inline';
-                    if (user.photoURL) {
-                        userAvatar.src = user.photoURL;
-                        userAvatar.style.display = 'block';
-                    }
-                    authBtn.innerHTML = `<i class="fa-solid fa-right-from-bracket"></i> Ka bax`;
-                    authBtn.className = "auth-btn logout";
-                } else {
-                    userName.textContent = "";
-                    userName.style.display = 'none';
-                    userAvatar.src = "";
-                    userAvatar.style.display = 'none';
-                    authBtn.innerHTML = `<i class="fa-solid fa-user"></i> Gal (Sign In)`;
-                    authBtn.className = "auth-btn";
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                userName.textContent = user.displayName || "User";
+                userName.style.display = 'inline';
+                if (user.photoURL) {
+                    userAvatar.src = user.photoURL;
+                    userAvatar.style.display = 'block';
                 }
-            });
-        }
+                authBtn.innerHTML = `<i class="fa-solid fa-right-from-bracket"></i> Ka bax`;
+                authBtn.className = "auth-btn logout";
+            } else {
+                userName.textContent = "";
+                userName.style.display = 'none';
+                userAvatar.src = "";
+                userAvatar.style.display = 'none';
+                authBtn.innerHTML = `<i class="fa-solid fa-user"></i> Gal (Sign In)`;
+                authBtn.className = "auth-btn";
+            }
+        });
     </script>
 
     <script>
