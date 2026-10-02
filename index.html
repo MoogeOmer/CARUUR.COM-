@@ -1,418 +1,180 @@
 <!DOCTYPE html>
 <html lang="so">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caruur.com - Sheekooyin iyo Madadaalo Carruureed</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-
-    <style>
-        :root {
-            --primary: #FF6B6B;
-            --secondary: #4ECDC4;
-            --accent: #FFE66D;
-            --dark: #2D3748;
-            --light: #F7FAFC;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--primary), #FF8E53);
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-        }
-
-        header h1 {
-            font-size: 2.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        header p {
-            font-size: 1.05rem;
-            opacity: 0.95;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        h2 {
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-            font-size: 1.6rem;
-            border-left: 5px solid var(--secondary);
-            padding-left: 10px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card.premium {
-            border: 2px solid var(--accent);
-        }
-
-        .card.premium::after {
-            content: "👑 VIP";
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--accent);
-            padding: 2px 8px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            border-radius: 20px;
-        }
-
-        .card h3 {
-            margin-bottom: 0.75rem;
-            color: var(--primary);
-        }
-
-        .card p {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 1.2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--secondary);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: background 0.2s;
-            text-align: center;
-        }
-
-        .btn:hover {
-            background: #3bbcb3;
-        }
-
-        .btn-premium {
-            background: var(--primary);
-        }
-
-        .btn-premium:hover {
-            background: #e05555;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-        }
-
-        .modal-content h3 {
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .modal-content p {
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-            color: #555;
-            text-align: left;
-        }
-
-        .close-btn {
-            background: #ccc;
-            margin-top: 1rem;
-            width: 100%;
-        }
-        
-        .whatsapp-btn {
-            background: #25D366;
-            width: 100%;
-            margin-bottom: 0.5rem;
-        }
-        
-        .whatsapp-btn:hover {
-            background: #1ebe5d;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #888;
-            font-size: 0.9rem;
-            border-top: 1px solid #eaeaea;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caruur.com - Sheekooyin & Waxbarasho</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen">
 
-    <header>
-        <h1>Caruur.com 🎈</h1>
-        <p>Sheekooyin Xikmad leh, Madadaalo iyo Waxbarasho Carruureed!</p>
-    </header>
+  <!-- Header Section -->
+  <header class="bg-gradient-to-r from-orange-400 to-rose-400 text-white p-6 rounded-b-3xl shadow-lg text-center">
+    <h1 class="text-3xl font-extrabold tracking-wide">Caruur.com</h1>
+    <p class="text-sm mt-2 font-medium opacity-95">Sheekooyin Xikmad leh, Madadaalo iyo Waxbarasho Carruureed!</p>
+  </header>
 
-    <div class="container">
+  <main class="max-w-md mx-auto p-4 space-y-6 mt-4">
+    
+    <!-- Cloud Account Section -->
+    <section class="space-y-3">
+      <div class="flex items-center space-x-2 border-l-4 border-teal-500 pl-3">
+        <h2 class="text-xl font-bold text-slate-900">Akoonka Isticmaalaha (Cloud Account)</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+      </div>
+
+      <!-- Auth Container Box -->
+      <div id="auth-container" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
         
-        <!-- Cloud Account Authentication Section -->
-        <h2>Akoonka Isticmaalaha (Cloud Account) 👤</h2>
-        <div class="card" style="margin-bottom: 3rem;">
-            <div id="auth-view">
-                <h3 id="form-title">Is-diiwaangeli (Sign Up)</h3>
-                <p id="form-desc">Abuuri akoon daruuri ah si aad meel kasta uga gasho.</p>
-                
-                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
-                    <input type="email" id="email" placeholder="Geli Iimeylkaaga (Email)" style="padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
-                    <input type="password" id="password" placeholder="Geli Furahaaga (Password)" style="padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
-                    
-                    <button id="auth-btn" class="btn" onclick="handleAuth()">Is-diiwaangeli</button>
-                    <p id="toggle-text" style="font-size: 0.85rem; text-align: center; margin-top: 5px; color: #666; cursor: pointer;" onclick="toggleMode()">Ma leedahay akoon hore? <b>Soo gal (Login)</b></p>
-                </div>
-            </div>
-
-            <!-- Logged In View -->
-            <div id="welcome-view" style="display: none; text-align: center;">
-                <h3 style="color: var(--secondary);">Soo dhawoow, <span id="display-user"></span>! 🎉</h3>
-                <p>Akoonkaagu wuu ku xiran yahay daruuraha (Cloud Connected).</p>
-                <button class="btn" style="background: #e05555; margin-top: 10px;" onclick="logout()">Ka bax (Logout)</button>
-            </div>
-            
-            <p id="auth-feedback" style="font-weight: bold; text-align: center; margin-top: 10px;"></p>
+        <!-- Form Header (Dynamic) -->
+        <div>
+          <h3 id="form-title" class="text-lg font-bold text-rose-500">Is-diiwaangeli (Sign Up)</h3>
+          <p id="form-desc" class="text-xs text-slate-500 mt-1">Abuuri akoon daruuri ah si aad meel kasta uga gasho.</p>
         </div>
 
-        <!-- Free Section -->
-        <h2>Sheekooyinka Bilaashka ah</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Cigaal Shidaad: Ninkii Cabsanaa</h3>
-                <p>Sheekada qosolka iyo casharka badan ee geesinimada carruurta la barayo.</p>
-                <button class="btn" onclick="alert('Ku raaxayso sheekada! (Bilaash)')">Dhageyso Sheekada</button>
-            </div>
-            <div class="card">
-                <h3>Bogga Rinjiyeynta Xarfaha</h3>
-                <p>Soo deji warqadaha midabaynta ee xarfaha Af-Soomaaliga.</p>
-                <button class="btn" onclick="alert('Warqaddii way soo degaysaa...')">Soo Deji PDF</button>
-            </div>
+        <!-- Inputs and Error/Success Messages -->
+        <div id="auth-form" class="space-y-3">
+          <div>
+            <input type="email" id="email" placeholder="Email-kaaga" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-teal-500 text-sm bg-slate-50/50">
+          </div>
+          <div>
+            <input type="password" id="password" placeholder="Furahaaga (Password)" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-teal-500 text-sm bg-slate-50/50">
+          </div>
+          <button id="action-btn" class="w-full py-2.5 bg-teal-500 text-white font-semibold rounded-xl shadow-md hover:bg-teal-600 transition text-sm">
+            Is-diiwaangeli
+          </button>
         </div>
 
-        <!-- Mini-Game Section -->
-        <h2>Cayaarta Carruurta: Isku-begsiinta Xayawaanka 🦁</h2>
-        <div class="card" style="margin-bottom: 3rem;">
-            <h3>Xulo Xayawaanka saxda ah!</h3>
-            <p id="game-question">Waa kuma xayawaanka culus ee keynta jooga ee leh jirka weyn?</p>
-            
-            <div id="game-options" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 15px 0;">
-                <button class="btn" onclick="speakText('Libaax'); checkAnswer('libaax')">Libaax 🔊</button>
-                <button class="btn" onclick="speakText('Maroodi'); checkAnswer('maroodi')">Maroodi 🔊</button>
-                <button class="btn" onclick="speakText('Daanyeer'); checkAnswer('daanyeer')">Daanyeer 🔊</button>
-            </div>
-            
-            <p id="game-feedback" style="font-weight: bold; text-align: center; margin-top: 10px;"></p>
+        <!-- Toggle Mode Link -->
+        <div class="text-center pt-1">
+          <button id="toggle-mode-btn" class="text-xs text-slate-500 hover:text-teal-600 font-medium">
+            Ma leedahay akoon hore? <span class="text-teal-600 underline">Soo gal (Login)</span>
+          </button>
         </div>
 
-        <!-- Premium VIP Section -->
-        <h2>Qasnadda VIP (Premium) 👑</h2>
-        <div class="grid">
-            <div class="card premium">
-                <h3>Ururinta Sheekooyinka Dhaqanka</h3>
-                <p>Fur 20+ sheekooyin maca-macaan oo maqal iyo muuqaal ah oo gaar ah.</p>
-                <button class="btn btn-premium" onclick="openModal('Sheekooyinka Dhaqanka (150 ETB)')">Fur 150 ETB</button>
-            </div>
-            <div class="card premium" style="border: 2px solid #f1c40f; background: #fffdf4;">
-                <h3>Qasnadda Joogtada ah (Lifetime VIP Pass) ⭐</h3>
-                <p>Hal mar bixi, oo hel dhammaan sheekooyinka iyo cayaaraha cusub weligood!</p>
-                <button class="btn btn-premium" style="background: #f39c12;" onclick="openModal('Lifetime VIP Pass (350 ETB)')">Iibso Hal Mar - 350 ETB</button>
-            </div>
-        </div>
+        <!-- Feedback Message Area -->
+        <div id="auth-message" class="text-xs text-center font-medium mt-2"></div>
+      </div>
+    </section>
 
-    </div>
+    <!-- Free Stories Section (Placeholder for your content) -->
+    <section class="space-y-3">
+      <div class="border-l-4 border-teal-500 pl-3">
+        <h2 class="text-xl font-bold text-slate-900">Sheekooyinka Bilaashka ah</h2>
+      </div>
+      <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 text-slate-500 text-sm">
+        Halkan waxaa ku jira sheekooyinka carruurta ee aad lacag la'aanta ku akhrisan karto...
+      </div>
+    </section>
 
-    <!-- Telebirr Payment Modal -->
-    <div id="paymentModal" class="modal">
-        <div class="modal-content">
-            <h3>Telebirr & Lacag-bixinta</h3>
-            <p id="modalText">Ku wareeji lacagta Telebirr: <strong>09XXXXXXXX</strong> (Abdifatah Mooge).<br><br>Intaa kadib, guji batoonka hoose si aad WhatsApp ugu soo dirto fariinta xaqiijinta.</p>
-            
-            <a id="whatsappLink" href="#" target="_blank" class="btn whatsapp-btn">WhatsApp-ka Noogu Soo Dir (+251987103141)</a>
-            
-            <button class="btn close-btn" onclick="closeModal()">Xir / Close</button>
-        </div>
-    </div>
+  </main>
 
-    <footer>
-        <p>&copy; 2026 Caruur.com. Xuquuqda oo dhan waa dhowran tahay.</p>
-    </footer>
+  <!-- Firebase Logic Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-analytics.js";
+    import { 
+      getAuth, 
+      createUserWithEmailAndPassword, 
+      signInWithEmailAndPassword, 
+      signOut, 
+      onAuthStateChanged 
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-    <script>
-        // Firebase Configuration injected from your project keys
-        const firebaseConfig = {
-            apiKey: "AIzaSyBYIOzKPhH7FkWvMnF2DZ",
-            authDomain: "caruur-7a8ed.firebaseapp.com",
-            projectId: "caruur-7a8ed",
-            storageBucket: "caruur-7a8ed.appspot.com",
-            messagingSenderId: "586260137951",
-            appId: "1:586260137951:web:ce36f7f5..."
-        };
+    // Your Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBYIOzKPhH7FKwVMnF2DZGdxKnyJ_hUjEc",
+      authDomain: "caruur-7a8ed.firebaseapp.com",
+      projectId: "caruur-7a8ed",
+      storageBucket: "caruur-7a8ed.firebasestorage.app",
+      messagingSenderId: "586260137951",
+      appId: "1:586260137951:web:ce36f7f5185df45bffe66a",
+      measurementId: "G-G9LLKJFKNC"
+    };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
 
-        let isLoginMode = false;
+    // UI Elements
+    const formTitle = document.getElementById('form-title');
+    const formDesc = document.getElementById('form-desc');
+    const actionBtn = document.getElementById('action-btn');
+    const toggleModeBtn = document.getElementById('toggle-mode-btn');
+    const authForm = document.getElementById('auth-form');
+    const authMessage = document.getElementById('auth-message');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
 
-        // Monitor login status anywhere
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                showWelcomeView(user.email);
-            } else {
-                logoutView();
-            }
+    let isLoginMode = false;
+
+    // Toggle between Sign Up and Login UI modes
+    toggleModeBtn.addEventListener('click', () => {
+      isLoginMode = !isLoginMode;
+      authMessage.textContent = '';
+      if (isLoginMode) {
+        formTitle.textContent = "Soo gal (Login)";
+        formDesc.textContent = "Geli xogtaada si aad akoonkaaga u gasho.";
+        actionBtn.textContent = "Soo gal";
+        toggleModeBtn.innerHTML = `Ma leedahay akoon cusub? <span class="text-teal-600 underline">Is-diiwaangeli (Sign Up)</span>`;
+      } else {
+        formTitle.textContent = "Is-diiwaangeli (Sign Up)";
+        formDesc.textContent = "Abuuri akoon daruuri ah si aad meel kasta uga gasho.";
+        actionBtn.textContent = "Is-diiwaangeli";
+        toggleModeBtn.innerHTML = `Ma leedahay akoon hore? <span class="text-teal-600 underline">Soo gal (Login)</span>`;
+      }
+    });
+
+    // Handle Auth Action Click
+    actionBtn.addEventListener('click', async () => {
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      authMessage.textContent = '';
+
+      if (!email || !password) {
+        authMessage.className = "text-xs text-center font-medium mt-2 text-rose-500";
+        authMessage.textContent = "Fadlan buuxi email-ka iyo furaha (password).";
+        return;
+      }
+
+      try {
+        if (isLoginMode) {
+          // Log In
+          await signInWithEmailAndPassword(auth, email, password);
+        } else {
+          // Sign Up
+          await createUserWithEmailAndPassword(auth, email, password);
+        }
+      } catch (error) {
+        authMessage.className = "text-xs text-center font-medium mt-2 text-rose-600";
+        authMessage.textContent = `Khalad: ${error.message}`;
+      }
+    });
+
+    // Monitor Auth State Changes (Updates UI when user logs in or out)
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in
+        authMessage.textContent = '';
+        authForm.innerHTML = `
+          <div class="space-y-3 text-center py-2">
+            <p class="text-sm font-semibold text-slate-700">Soo dhowow, <span class="text-teal-600">${user.email}</span>!</p>
+            <button id="logout-btn" class="w-full py-2.5 bg-rose-500 text-white font-semibold rounded-xl shadow-md hover:bg-rose-600 transition text-sm">
+              Ka Bax (Log Out)
+            </button>
+          </div>
+        `;
+        document.getElementById('logout-btn').addEventListener('click', async () => {
+          await signOut(auth);
         });
-
-        function toggleMode() {
-            isLoginMode = !isLoginMode;
-            document.getElementById('form-title').textContent = isLoginMode ? 'Soo Gal (Login)' : 'Is-diiwaangeli (Sign Up)';
-            document.getElementById('form-desc').textContent = isLoginMode ? 'Geli iimeylkaaga iyo furahaaga si aad u gasho.' : 'Abuuri akoon daruuri ah si aad meel kasta uga gasho.';
-            document.getElementById('auth-btn').textContent = isLoginMode ? 'Soo Gal' : 'Is-diiwaangeli';
-            document.getElementById('toggle-text').innerHTML = isLoginMode ? 'Ma haysatid akoon? <b>Is-diiwaangeli</b>' : 'Ma leedahay akoon hore? <b>Soo gal (Login)</b>';
-            document.getElementById('auth-feedback').textContent = '';
-        }
-
-        function handleAuth() {
-            const email = document.getElementById('email').value.trim();
-            const pass = document.getElementById('password').value.trim();
-            const feedback = document.getElementById('auth-feedback');
-
-            if (!email || !pass) {
-                feedback.style.color = '#c0392b';
-                feedback.textContent = 'Fadlan buuxi iimeylka iyo furaha labadaba! ⚠️';
-                return;
-            }
-
-            if (!isLoginMode) {
-                auth.createUserWithEmailAndPassword(email, pass)
-                    .then((userCredential) => {
-                        feedback.style.color = '#27ae60';
-                        feedback.textContent = 'Akoonka daruuriga ah si guul leh ayaa loo abuuray! 🎉';
-                    })
-                    .catch((error) => {
-                        feedback.style.color = '#c0392b';
-                        feedback.textContent = 'Khalad: ' + error.message;
-                    });
-            } else {
-                auth.signInWithEmailAndPassword(email, pass)
-                    .then((userCredential) => {
-                        feedback.style.color = '#27ae60';
-                        feedback.textContent = 'Si guul leh ayaad u gashay! 🚀';
-                    })
-                    .catch((error) => {
-                        feedback.style.color = '#c0392b';
-                        feedback.textContent = 'Iimeylka ama furaha waa khalad.';
-                    });
-            }
-        }
-
-        function showWelcomeView(email) {
-            document.getElementById('auth-view').style.display = 'none';
-            document.getElementById('welcome-view').style.display = 'block';
-            document.getElementById('display-user').textContent = email;
-        }
-
-        function logoutView() {
-            document.getElementById('welcome-view').style.display = 'none';
-            document.getElementById('auth-view').style.display = 'block';
-            document.getElementById('email').value = '';
-            document.getElementById('password').value = '';
-            document.getElementById('auth-feedback').textContent = '';
-        }
-
-        function logout() {
-            auth.signOut();
-        }
-
-        function openModal(packageName) {
-            document.getElementById('paymentModal').style.display = 'flex';
-            const whatsappBtn = document.getElementById('whatsappLink');
-            const encodedMessage = encodeURIComponent(`Asc, waxaan bixiyay lacag-bixinta ${packageName} ee Caruur.com. Fadlan i xaqiiji.`);
-            whatsappBtn.href = `https://wa.me/251987103141?text=${encodedMessage}`;
-        }
-
-        function closeModal() {
-            document.getElementById('paymentModal').style.display = 'none';
-        }
-
-        function checkAnswer(selected) {
-            const feedback = document.getElementById('game-feedback');
-            if (selected === 'maroodi') {
-                feedback.style.color = '#27ae60';
-                feedback.textContent = 'Hambalyo! Way sax tahay! 🎉 Waa Maroodi.';
-            } else {
-                feedback.style.color = '#c0392b';
-                feedback.textContent = 'Waa khalad! Dib u dayisnow. ❌';
-            }
-        }
-
-        function speakText(text) {
-            if ('speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'so-SO'; 
-                utterance.rate = 0.9; 
-                window.speechSynthesis.speak(utterance);
-            }
-        }
-    </script>
-
+      } else {
+        // User is signed out, reload page or reset form state
+        // (You can also re-render the original inputs if preferred)
+      }
+    });
+  </script>
 </body>
 </html>
