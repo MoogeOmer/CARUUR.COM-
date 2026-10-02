@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="so">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caruur.com - Safe & Fun Learning for Kids</title>
+    <title>Caruur.com - Sheekooyin iyo Madadaalo Carruureed</title>
     <!-- Google Fonts for a friendly, playful look -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -39,13 +39,13 @@
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             margin-bottom: 0.5rem;
         }
 
         header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+            font-size: 1.05rem;
+            opacity: 0.95;
         }
 
         /* Container */
@@ -59,7 +59,7 @@
         h2 {
             margin-bottom: 1.5rem;
             color: var(--dark);
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             border-left: 5px solid var(--secondary);
             padding-left: 10px;
         }
@@ -124,6 +124,7 @@
             cursor: pointer;
             border: none;
             transition: background 0.2s;
+            text-align: center;
         }
 
         .btn:hover {
@@ -167,11 +168,23 @@
             margin-bottom: 1.5rem;
             font-size: 0.9rem;
             color: #555;
+            text-align: left;
         }
 
         .close-btn {
             background: #ccc;
             margin-top: 1rem;
+            width: 100%;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #1ebe5d;
         }
 
         /* Footer */
@@ -188,38 +201,38 @@
 
     <header>
         <h1>Caruur.com 🎈</h1>
-        <p>Safe, Fun, and Educational Stories & Games for Kids!</p>
+        <p>Sheekooyin Xikmad leh, Madadaalo iyo Waxbarasho Carruureed!</p>
     </header>
 
     <div class="container">
         
         <!-- Free Section -->
-        <h2>Free Stories & Activities</h2>
+        <h2>Sheekooyinka Bilaashka ah</h2>
         <div class="grid">
             <div class="card">
-                <h3>The Clever Rabbit (Folktale)</h3>
-                <p>A fun audio-visual short story teaching kids about wisdom and cleverness.</p>
-                <button class="btn" onclick="alert('Enjoy the story! (Free content)')">Play Story</button>
+                <h3>Cigaal Shidaad: Ninkii Cabsanaa</h3>
+                <p>Sheekada qosolka iyo casharka badan ee geesinimada carruurta la barayo.</p>
+                <button class="btn" onclick="alert('Ku raaxayso sheekada! (Bilaash)')">Dhageyso Sheekada</button>
             </div>
             <div class="card">
-                <h3>Alphabet Coloring Sheet</h3>
-                <p>Downloadable PDF coloring template for letters A to Z.</p>
-                <button class="btn" onclick="alert('Downloading coloring sheet...')">Download PDF</button>
+                <h3>Bogga Rinjiyeynta Xarfaha</h3>
+                <p>Soo deji warqadaha midabaynta ee xarfaha Af-Soomaaliga.</p>
+                <button class="btn" onclick="alert('Warqaddii way soo degaysaa...')">Soo Deji PDF</button>
             </div>
         </div>
 
         <!-- Premium VIP Section -->
-        <h2>VIP Premium Vault 👑</h2>
+        <h2>Qasnadda VIP (Premium) 👑</h2>
         <div class="grid">
             <div class="card premium">
-                <h3>Full Somali Folk Tales Pack (Audio + Ebook)</h3>
-                <p>Unlock 20+ exclusive animated stories and moral lessons in local language.</p>
-                <button class="btn btn-premium" onclick="openModal()">Unlock for 150 ETB</button>
+                <h3>Ururinta Sheekooyinka Dhaqanka & Caaradii</h3>
+                <p>Fur 20+ sheekooyin maca-macaan oo maqal iyo muuqaal ah oo gaar ah.</p>
+                <button class="btn btn-premium" onclick="openModal('Sheekooyinka Dhaqanka (150 ETB)')">Fur 150 ETB</button>
             </div>
             <div class="card premium">
-                <h3>Math & Puzzle Master Workbook</h3>
-                <p>Complete 50-page printable activity pack for cognitive growth.</p>
-                <button class="btn btn-premium" onclick="openModal()">Unlock for 100 ETB</button>
+                <h3>Buugga Xisaabta iyo Maskax-maal</h3>
+                <p>50 bog oo ah jimicsiyo iyo su'aalo caqli-tiirsi ah oo carruurta kor u qaadaya.</p>
+                <button class="btn btn-premium" onclick="openModal('Buugga Xisaabta (100 ETB)')">Fur 100 ETB</button>
             </div>
         </div>
 
@@ -228,19 +241,21 @@
     <!-- Telebirr Payment Modal -->
     <div id="paymentModal" class="modal">
         <div class="modal-content">
-            <h3>Telebirr Instant Checkout</h3>
-            <p>Send the exact amount to our merchant number: <strong>09XXXXXXXX</strong> (Abdifatah Mooge).<br><br>After payment, send your transaction reference code via WhatsApp to get your instant VIP Access Code!</p>
-            <button class="btn" onclick="alert('Redirecting to WhatsApp...')">Send Code via WhatsApp</button><br>
-            <button class="btn close-btn" onclick="closeModal()">Close</button>
+            <h3>Telebirr & Lacag-bixinta</h3>
+            <p id="modalText">Ku wareeji lacagta Telebirr: <strong>09XXXXXXXX</strong> (Abdifatah Mooge).<br><br>Intaa kadib, guji batoonka hoose si aad WhatsApp ugu soo dirto fariinta xaqiijinta (Receipt) si aad u hesho koodkaaga VIP-da!</p>
+            
+            <a id="whatsappLink" href="https://wa.me/251987103141?text=Asc%2C%20waxaan%20bixiyay%20lacagtii%20Caruur.com.%20Fadlan%20ii%20soo%20dir%20koodka%20VIP-da." target="_blank" class="btn whatsapp-btn">WhatsApp-ka Noogu Soo Dir (+251987103141)</a>
+            
+            <button class="btn close-btn" onclick="closeModal()">Xir / Close</button>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Caruur.com. Built with love for kids & parents.</p>
+        <p>&copy; 2026 Caruur.com. Xuquuqda oo dhan waa dhowran tahay.</p>
     </footer>
 
     <script>
-        function openModal() {
+        function openModal(packageName) {
             document.getElementById('paymentModal').style.display = 'flex';
         }
 
