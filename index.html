@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caruur.com - Sheekooyin iyo Madadaalo Carruureed</title>
-    <!-- Google Fonts for a friendly, playful look -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
     <style>
         :root {
             --primary: #FF6B6B;
@@ -28,7 +33,6 @@
             line-height: 1.6;
         }
 
-        /* Header */
         header {
             background: linear-gradient(135deg, var(--primary), #FF8E53);
             color: white;
@@ -48,14 +52,12 @@
             opacity: 0.95;
         }
 
-        /* Container */
         .container {
             max-width: 1000px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
 
-        /* Section Titles */
         h2 {
             margin-bottom: 1.5rem;
             color: var(--dark);
@@ -64,7 +66,6 @@
             padding-left: 10px;
         }
 
-        /* Cards Grid */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -139,7 +140,7 @@
             background: #e05555;
         }
 
-        /* Modal Popup for Telebirr Payment */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -187,7 +188,6 @@
             background: #1ebe5d;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 2rem;
@@ -206,6 +206,32 @@
 
     <div class="container">
         
+        <!-- Cloud Account Authentication Section -->
+        <h2>Akoonka Isticmaalaha (Cloud Account) 👤</h2>
+        <div class="card" style="margin-bottom: 3rem;">
+            <div id="auth-view">
+                <h3 id="form-title">Is-diiwaangeli (Sign Up)</h3>
+                <p id="form-desc">Abuuri akoon daruuri ah si aad meel kasta uga gasho.</p>
+                
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                    <input type="email" id="email" placeholder="Geli Iimeylkaaga (Email)" style="padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
+                    <input type="password" id="password" placeholder="Geli Furahaaga (Password)" style="padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
+                    
+                    <button id="auth-btn" class="btn" onclick="handleAuth()">Is-diiwaangeli</button>
+                    <p id="toggle-text" style="font-size: 0.85rem; text-align: center; margin-top: 5px; color: #666; cursor: pointer;" onclick="toggleMode()">Ma leedahay akoon hore? <b>Soo gal (Login)</b></p>
+                </div>
+            </div>
+
+            <!-- Logged In View -->
+            <div id="welcome-view" style="display: none; text-align: center;">
+                <h3 style="color: var(--secondary);">Soo dhawoow, <span id="display-user"></span>! 🎉</h3>
+                <p>Akoonkaagu wuu ku xiran yahay daruuraha (Cloud Connected).</p>
+                <button class="btn" style="background: #e05555; margin-top: 10px;" onclick="logout()">Ka bax (Logout)</button>
+            </div>
+            
+            <p id="auth-feedback" style="font-weight: bold; text-align: center; margin-top: 10px;"></p>
+        </div>
+
         <!-- Free Section -->
         <h2>Sheekooyinka Bilaashka ah</h2>
         <div class="grid">
@@ -221,7 +247,7 @@
             </div>
         </div>
 
-        <!-- Mini-Game Section with Speech Support -->
+        <!-- Mini-Game Section -->
         <h2>Cayaarta Carruurta: Isku-begsiinta Xayawaanka 🦁</h2>
         <div class="card" style="margin-bottom: 3rem;">
             <h3>Xulo Xayawaanka saxda ah!</h3>
@@ -240,14 +266,14 @@
         <h2>Qasnadda VIP (Premium) 👑</h2>
         <div class="grid">
             <div class="card premium">
-                <h3>Ururinta Sheekooyinka Dhaqanka & Caaradii</h3>
+                <h3>Ururinta Sheekooyinka Dhaqanka</h3>
                 <p>Fur 20+ sheekooyin maca-macaan oo maqal iyo muuqaal ah oo gaar ah.</p>
                 <button class="btn btn-premium" onclick="openModal('Sheekooyinka Dhaqanka (150 ETB)')">Fur 150 ETB</button>
             </div>
-            <div class="card premium">
-                <h3>Buugga Xisaabta iyo Maskax-maal</h3>
-                <p>50 bog oo ah jimicsiyo iyo su'aalo caqli-tiirsi ah oo carruurta kor u qaadaya.</p>
-                <button class="btn btn-premium" onclick="openModal('Buugga Xisaabta (100 ETB)')">Fur 100 ETB</button>
+            <div class="card premium" style="border: 2px solid #f1c40f; background: #fffdf4;">
+                <h3>Qasnadda Joogtada ah (Lifetime VIP Pass) ⭐</h3>
+                <p>Hal mar bixi, oo hel dhammaan sheekooyinka iyo cayaaraha cusub weligood!</p>
+                <button class="btn btn-premium" style="background: #f39c12;" onclick="openModal('Lifetime VIP Pass (350 ETB)')">Iibso Hal Mar - 350 ETB</button>
             </div>
         </div>
 
@@ -257,9 +283,9 @@
     <div id="paymentModal" class="modal">
         <div class="modal-content">
             <h3>Telebirr & Lacag-bixinta</h3>
-            <p id="modalText">Ku wareeji lacagta Telebirr: <strong>09XXXXXXXX</strong> (Abdifatah Mooge).<br><br>Intaa kadib, guji batoonka hoose si aad WhatsApp ugu soo dirto fariinta xaqiijinta (Receipt) si aad u hesho koodkaaga VIP-da!</p>
+            <p id="modalText">Ku wareeji lacagta Telebirr: <strong>09XXXXXXXX</strong> (Abdifatah Mooge).<br><br>Intaa kadib, guji batoonka hoose si aad WhatsApp ugu soo dirto fariinta xaqiijinta.</p>
             
-            <a id="whatsappLink" href="https://wa.me/251987103141?text=Asc%2C%20waxaan%20bixiyay%20lacagtii%20Caruur.com.%20Fadlan%20ii%20soo%20dir%20koodka%20VIP-da." target="_blank" class="btn whatsapp-btn">WhatsApp-ka Noogu Soo Dir (+251987103141)</a>
+            <a id="whatsappLink" href="#" target="_blank" class="btn whatsapp-btn">WhatsApp-ka Noogu Soo Dir (+251987103141)</a>
             
             <button class="btn close-btn" onclick="closeModal()">Xir / Close</button>
         </div>
@@ -270,15 +296,103 @@
     </footer>
 
     <script>
+        // Firebase Configuration injected from your project keys
+        const firebaseConfig = {
+            apiKey: "AIzaSyBYIOzKPhH7FkWvMnF2DZ",
+            authDomain: "caruur-7a8ed.firebaseapp.com",
+            projectId: "caruur-7a8ed",
+            storageBucket: "caruur-7a8ed.appspot.com",
+            messagingSenderId: "586260137951",
+            appId: "1:586260137951:web:ce36f7f5..."
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        let isLoginMode = false;
+
+        // Monitor login status anywhere
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                showWelcomeView(user.email);
+            } else {
+                logoutView();
+            }
+        });
+
+        function toggleMode() {
+            isLoginMode = !isLoginMode;
+            document.getElementById('form-title').textContent = isLoginMode ? 'Soo Gal (Login)' : 'Is-diiwaangeli (Sign Up)';
+            document.getElementById('form-desc').textContent = isLoginMode ? 'Geli iimeylkaaga iyo furahaaga si aad u gasho.' : 'Abuuri akoon daruuri ah si aad meel kasta uga gasho.';
+            document.getElementById('auth-btn').textContent = isLoginMode ? 'Soo Gal' : 'Is-diiwaangeli';
+            document.getElementById('toggle-text').innerHTML = isLoginMode ? 'Ma haysatid akoon? <b>Is-diiwaangeli</b>' : 'Ma leedahay akoon hore? <b>Soo gal (Login)</b>';
+            document.getElementById('auth-feedback').textContent = '';
+        }
+
+        function handleAuth() {
+            const email = document.getElementById('email').value.trim();
+            const pass = document.getElementById('password').value.trim();
+            const feedback = document.getElementById('auth-feedback');
+
+            if (!email || !pass) {
+                feedback.style.color = '#c0392b';
+                feedback.textContent = 'Fadlan buuxi iimeylka iyo furaha labadaba! ⚠️';
+                return;
+            }
+
+            if (!isLoginMode) {
+                auth.createUserWithEmailAndPassword(email, pass)
+                    .then((userCredential) => {
+                        feedback.style.color = '#27ae60';
+                        feedback.textContent = 'Akoonka daruuriga ah si guul leh ayaa loo abuuray! 🎉';
+                    })
+                    .catch((error) => {
+                        feedback.style.color = '#c0392b';
+                        feedback.textContent = 'Khalad: ' + error.message;
+                    });
+            } else {
+                auth.signInWithEmailAndPassword(email, pass)
+                    .then((userCredential) => {
+                        feedback.style.color = '#27ae60';
+                        feedback.textContent = 'Si guul leh ayaad u gashay! 🚀';
+                    })
+                    .catch((error) => {
+                        feedback.style.color = '#c0392b';
+                        feedback.textContent = 'Iimeylka ama furaha waa khalad.';
+                    });
+            }
+        }
+
+        function showWelcomeView(email) {
+            document.getElementById('auth-view').style.display = 'none';
+            document.getElementById('welcome-view').style.display = 'block';
+            document.getElementById('display-user').textContent = email;
+        }
+
+        function logoutView() {
+            document.getElementById('welcome-view').style.display = 'none';
+            document.getElementById('auth-view').style.display = 'block';
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('auth-feedback').textContent = '';
+        }
+
+        function logout() {
+            auth.signOut();
+        }
+
         function openModal(packageName) {
             document.getElementById('paymentModal').style.display = 'flex';
+            const whatsappBtn = document.getElementById('whatsappLink');
+            const encodedMessage = encodeURIComponent(`Asc, waxaan bixiyay lacag-bixinta ${packageName} ee Caruur.com. Fadlan i xaqiiji.`);
+            whatsappBtn.href = `https://wa.me/251987103141?text=${encodedMessage}`;
         }
 
         function closeModal() {
             document.getElementById('paymentModal').style.display = 'none';
         }
 
-        // Mini-game check answer logic
         function checkAnswer(selected) {
             const feedback = document.getElementById('game-feedback');
             if (selected === 'maroodi') {
@@ -290,7 +404,6 @@
             }
         }
 
-        // Web Speech API for pronunciation
         function speakText(text) {
             if ('speechSynthesis' in window) {
                 const utterance = new SpeechSynthesisUtterance(text);
