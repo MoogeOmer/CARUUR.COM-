@@ -20,9 +20,6 @@
     <section class="space-y-3">
       <div class="flex items-center space-x-2 border-l-4 border-teal-500 pl-3">
         <h2 class="text-xl font-bold text-slate-900">Akoonka Isticmaalaha (Cloud Account)</h2>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-        </svg>
       </div>
 
       <!-- Auth Container Box -->
@@ -59,7 +56,7 @@
       </div>
     </section>
 
-    <!-- Free Stories Section (Placeholder for your content) -->
+    <!-- Free Stories Section -->
     <section class="space-y-3">
       <div class="border-l-4 border-teal-500 pl-3">
         <h2 class="text-xl font-bold text-slate-900">Sheekooyinka Bilaashka ah</h2>
@@ -73,25 +70,25 @@
 
   <!-- Firebase Logic Script -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-analytics.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
     import { 
       getAuth, 
       createUserWithEmailAndPassword, 
       signInWithEmailAndPassword, 
       signOut, 
       onAuthStateChanged 
-    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+    } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
-    // Your Firebase Configuration
+    // Your Exact Firebase Web Configuration
     const firebaseConfig = {
       apiKey: "AIzaSyBYIOzKPhH7FKwVMnF2DZGdxKnyJ_hUjEc",
       authDomain: "caruur-7a8ed.firebaseapp.com",
       projectId: "caruur-7a8ed",
       storageBucket: "caruur-7a8ed.firebasestorage.app",
       messagingSenderId: "586260137951",
-      appId: "1:586260137951:web:ce36f7f5185df45bffe66a",
-      measurementId: "G-G9LLKJFKNC"
+      appId: "1:586260137951:web:1fd58321b963a6dcffe66a",
+      measurementId: "G-X4RYC2YKDV"
     };
 
     // Initialize Firebase
@@ -142,10 +139,8 @@
 
       try {
         if (isLoginMode) {
-          // Log In
           await signInWithEmailAndPassword(auth, email, password);
         } else {
-          // Sign Up
           await createUserWithEmailAndPassword(auth, email, password);
         }
       } catch (error) {
@@ -154,10 +149,9 @@
       }
     });
 
-    // Monitor Auth State Changes (Updates UI when user logs in or out)
+    // Monitor Auth State Changes
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in
         authMessage.textContent = '';
         authForm.innerHTML = `
           <div class="space-y-3 text-center py-2">
@@ -170,11 +164,9 @@
         document.getElementById('logout-btn').addEventListener('click', async () => {
           await signOut(auth);
         });
-      } else {
-        // User is signed out, reload page or reset form state
-        // (You can also re-render the original inputs if preferred)
       }
     });
   </script>
 </body>
 </html>
+
