@@ -3,30 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHALLAAN.COM - VIP Verification</title>
+    <title>DHALLAAN.COM - Dunida Carruurta & Horumarinta</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-900 text-white min-h-screen flex flex-col items-center justify-center p-4">
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between">
 
-    <!-- Qeybta Weyn ee Website-ka -->
-    <div class="w-full max-w-md space-y-6">
-        
-        <!-- Madaxa Mareegta -->
-        <div class="text-center">
-            <h1 class="text-3xl font-extrabold text-indigo-400">DHALLAAN.COM</h1>
-            <p class="text-slate-400 text-sm mt-1">Ku soo dhowow dunida dhallaanka - Qeybta Premium</p>
+    <!-- Header / Navbar -->
+    <header class="bg-slate-800 border-b border-slate-700 py-4 px-6 shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-black text-indigo-400 tracking-wider">DHALLAAN<span class="text-white">.COM</span></h1>
+            <nav class="space-x-4 text-sm text-slate-300 hidden md:block">
+                <a href="#" class="hover:text-indigo-400 transition">Bogga Hore</a>
+                <a href="#services" class="hover:text-indigo-400 transition">Adeegyada</a>
+                <a href="#verification" class="hover:text-indigo-400 transition">Hubinta VIP</a>
+            </nav>
         </div>
+    </header>
 
-        <!-- Foomka Hubinta Koodhka VIP -->
-        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700">
+    <!-- Main Content Area -->
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-12 w-full">
+        
+        <!-- Hero Section -->
+        <section class="text-center space-y-4 py-6">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white leading-tight">
+                Ku soo dhowow <span class="text-indigo-400">DHALLAAN.COM</span>
+            </h2>
+            <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto">
+                Barta ugu fiican ee loogu talagalay barashada, korriimada, iyo madadaalada carruurtaada adigoo helaya casharro iyo agab gaar ah.
+            </p>
+        </section>
+
+        <!-- Public Services / Free Section -->
+        <section id="services" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-lg">
+                <h3 class="text-lg font-bold text-indigo-300 mb-2">📚 Sheekooyin Carruureed</h3>
+                <p class="text-slate-400 text-xs">Sheekooyin akhlaaq xambaarsan oo ay carruurtu ka baranayaan anshaxa iyo aqoonta asaasiga ah.</p>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-lg">
+                <h3 class="text-lg font-bold text-indigo-300 mb-2">🎨 Sawirro iyo Midabaynta</h3>
+                <p class="text-slate-400 text-xs">Agab fudud oo carruurtu ku horumarinayaan hal-abuurkooda fanka iyo maskaxda.</p>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-lg">
+                <h3 class="text-lg font-bold text-indigo-300 mb-2">🔤 Xuruufta & Tirada</h3>
+                <p class="text-slate-400 text-xs">Casharro muuqaal iyo maqal leh oo fududeynaya barashada xuruufta iyo xisaabta.</p>
+            </div>
+        </section>
+
+        <!-- VIP Verification Section -->
+        <section id="verification" class="max-w-md mx-auto w-full bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700">
             <h2 class="text-xl font-bold mb-2 text-center text-indigo-300">Geli Koodhkaaga VIP</h2>
-            <p class="text-slate-400 text-xs mb-5 text-center">Geli koodhka aad ka heshay maamulka si aad u furto adeega Premium-ka.</p>
+            <p class="text-slate-400 text-xs mb-5 text-center">Geli koodhkaaga gaarka ah si aad u furto qaybta Premium-ka ee xiran.</p>
 
             <div class="space-y-4">
                 <div>
-                    <label for="vipInput" class="block text-xs font-medium text-slate-300 mb-1">Koodhka Gaarka ah:</label>
-                    <input type="text" id="vipInput" placeholder="Tusaale: MITS-1021" 
+                    <label for="vipInput" class="block text-xs font-medium text-slate-300 mb-1">Koodhka VIP-da:</label>
+                    <input type="text" id="vipInput" placeholder="Tusaale: MITS-4829" 
                         class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-indigo-500 text-white uppercase placeholder-slate-400 text-sm">
                 </div>
 
@@ -38,25 +70,55 @@
 
             <!-- Fariinta ka soo baxeysa -->
             <div id="resultMessage" class="mt-4 text-center text-xs font-medium hidden p-3 rounded-lg"></div>
-        </div>
+        </section>
 
-        <!-- Qeybta Content-ka oo qarsoon (Loo furayo oo qura marka koodhku shaqeeyo) -->
-        <div id="premiumContent" class="hidden bg-emerald-900/40 border border-emerald-500/50 p-6 rounded-2xl text-center space-y-3">
-            <h3 class="text-lg font-bold text-emerald-400">✨ Adeegii Premium-ka waa Furan yahay!</h3>
-            <p class="text-xs text-slate-300">Hambalyo! Hadda waxaad si xor ah u isticmaali kartaa dhammaan agabka iyo casharrada gaarka ah ee carruurta.</p>
-        </div>
+        <!-- Protected Premium Content (Hidden by default) -->
+        <section id="premiumContent" class="hidden bg-emerald-950/40 border border-emerald-500/50 p-8 rounded-2xl text-center space-y-4 max-w-2xl mx-auto">
+            <h3 class="text-2xl font-bold text-emerald-400">✨ Ku soo dhowow Qeybta Gaarka ah (Premium Content)!</h3>
+            <p class="text-sm text-slate-300">Hambalyo! Koodhkaagii waa la xaqiijiyay. Hadda waxaad si xor ah u heli kartaa dhammaan casharrada gaarka ah, buugaagta dhijitaalka ah, iyo agabka horumarinta carruurta.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                <div class="bg-slate-800 p-4 rounded-xl border border-emerald-500/30">
+                    <h4 class="font-bold text-emerald-300 text-sm">📖 Buugga Koowaad ee Carruurta</h4>
+                    <p class="text-xs text-slate-400 mt-1">Soo deji buugga oo buuxa oo leh sawirro midab leh.</p>
+                </div>
+                <div class="bg-slate-800 p-4 rounded-xl border border-emerald-500/30">
+                    <h4 class="font-bold text-emerald-300 text-sm">🎧 Sheekooyinka Maqal</h4>
+                    <p class="text-xs text-slate-400 mt-1">Dhageyso sheekooyin xiiso leh oo jiifka ka hor ah.</p>
+                </div>
+            </div>
+        </section>
 
-    </div>
+    </main>
 
-    <!-- JavaScript-ka Shaqeynaya -->
+    <!-- Footer -->
+    <footer class="bg-slate-800 border-t border-slate-700 py-6 text-center text-xs text-slate-500 mt-12">
+        <p>&copy; 2026 DHALLAAN.COM. Xuquuqda oo dhan waa la dhowray.</p>
+    </footer>
+
+    <!-- JavaScript-ka Hubinta iyo 100-ka Koodh -->
     <script>
-        // Liiska koodhadhka VIP-da (Waxaad ku dari kartaa inta aad rabto)
+        // 100-ka koodh ee VIP-da ah oo wata xaaladdooda (used: false)
         const vipCodesDatabase = {
-            "MITS-1021": { used: false, owner: "" },
-            "MITS-1022": { used: false, owner: "" },
-            "MITS-1023": { used: false, owner: "" },
-            "MITS-1085": { used: false, owner: "" },
-            "MITS-1142": { used: false, owner: "" }
+            "MITS-4829": { used: false }, "MITS-7143": { used: false }, "MITS-2390": { used: false }, "MITS-9430": { used: false }, "MITS-5128": { used: false },
+            "MITS-8461": { used: false }, "MITS-3192": { used: false }, "MITS-6547": { used: false }, "MITS-1823": { used: false }, "MITS-9034": { used: false },
+            "MITS-2458": { used: false }, "MITS-7912": { used: false }, "MITS-4385": { used: false }, "MITS-6129": { used: false }, "MITS-3841": { used: false },
+            "MITS-9562": { used: false }, "MITS-1274": { used: false }, "MITS-8310": { used: false }, "MITS-5942": { used: false }, "MITS-2067": { used: false },
+            "MITS-7491": { used: false }, "MITS-3158": { used: false }, "MITS-6832": { used: false }, "MITS-4219": { used: false }, "MITS-9124": { used: false },
+            "MITS-1653": { used: false }, "MITS-8047": { used: false }, "MITS-2938": { used: false }, "MITS-5310": { used: false }, "MITS-6794": { used: false },
+            "MITS-3581": { used: false }, "MITS-8920": { used: false }, "MITS-1469": { used: false }, "MITS-7235": { used: false }, "MITS-4912": { used: false },
+            "MITS-6031": { used: false }, "MITS-2845": { used: false }, "MITS-9173": { used: false }, "MITS-5382": { used: false }, "MITS-1926": { used: false },
+            "MITS-7408": { used: false }, "MITS-3619": { used: false }, "MITS-8524": { used: false }, "MITS-2109": { used: false }, "MITS-6483": { used: false },
+            "MITS-4710": { used: false }, "MITS-9325": { used: false }, "MITS-1842": { used: false }, "MITS-5691": { used: false }, "MITS-3048": { used: false },
+            "MITS-7195": { used: false }, "MITS-2584": { used: false }, "MITS-8931": { used: false }, "MITS-4123": { used: false }, "MITS-6379": { used: false },
+            "MITS-1492": { used: false }, "MITS-9840": { used: false }, "MITS-3267": { used: false }, "MITS-5712": { used: false }, "MITS-8094": { used: false },
+            "MITS-2341": { used: false }, "MITS-6580": { used: false }, "MITS-4198": { used: false }, "MITS-9431": { used: false }, "MITS-1725": { used: false },
+            "MITS-7864": { used: false }, "MITS-3059": { used: false }, "MITS-5283": { used: false }, "MITS-8942": { used: false }, "MITS-1630": { used: false },
+            "MITS-6412": { used: false }, "MITS-3981": { used: false }, "MITS-7204": { used: false }, "MITS-5169": { used: false }, "MITS-2834": { used: false },
+            "MITS-9512": { used: false }, "MITS-4301": { used: false }, "MITS-8673": { used: false }, "MITS-1945": { used: false }, "MITS-6238": { used: false },
+            "MITS-3419": { used: false }, "MITS-7824": { used: false }, "MITS-5031": { used: false }, "MITS-9165": { used: false }, "MITS-2784": { used: false },
+            "MITS-6342": { used: false }, "MITS-1509": { used: false }, "MITS-8421": { used: false }, "MITS-4956": { used: false }, "MITS-3210": { used: false },
+            "MITS-7643": { used: false }, "MITS-2198": { used: false }, "MITS-6072": { used: false }, "MITS-9384": { used: false }, "MITS-1850": { used: false },
+            "MITS-5421": { used: false }, "MITS-8109": { used: false }, "MITS-3672": { used: false }, "MITS-4731": { used: false }, "MITS-6925": { used: false }
         };
 
         function handleVerification() {
@@ -74,19 +136,19 @@
                 return;
             }
 
-            // Hubi in koodhku jiro kaydka
+            // Hubi in koodhku jiro keydka
             if (vipCodesDatabase.hasOwnProperty(userCode)) {
                 if (!vipCodesDatabase[userCode].used) {
                     resultDiv.textContent = "Guul! Koodhkan waa sax, Premium-kii waa furmay.";
                     resultDiv.classList.add('text-emerald-400', 'bg-emerald-950/50', 'block');
                     
-                    // Calaamadi in la isticmaalay si aan loo isticmaalin mar labaad
+                    // Calaamadi in koodhkan la isticmaalay si aan loo isticmaalin mar labaad
                     vipCodesDatabase[userCode].used = true;
 
-                    // Tus qaybtii xidhneyd ama agabkii Premium-ka
+                    // Tus qeybtii qarsoonayd ee Premium-ka
                     premiumBox.classList.remove('hidden');
                     
-                    // Karo Foomka si uusan qof kale u isticmaalin isla koodhkaas isla daqiiqadaas
+                    // Loo gudub ama u rog foomka mid xiran
                     inputField.disabled = true;
                 } else {
                     resultDiv.textContent = "Waan ka xumahay, koodhkan horay ayaa loo isticmaalay!";
