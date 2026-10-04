@@ -56,7 +56,7 @@
             <!-- Tab Switches -->
             <div class="flex border-b border-slate-700 pb-3">
                 <button onclick="switchTab('payment')" id="tabPaymentBtn" class="flex-1 text-center font-bold text-indigo-400 pb-2 border-b-2 border-indigo-500 text-sm">Furo VIP (Lacag Bixinta)</button>
-                <button onclick="switchTab('login')" id="tabLoginBtn" class="flex-1 text-center font-semibold text-slate-400 pb-2 text-sm">Galitaanka (Login)</button>
+                <button onclick="switchTab('login')" id="tabLoginBtn" class="flex-1 text-center font-semibold text-slate-400 pb-2 text-sm">Gelitaanka (Login)</button>
             </div>
 
             <!-- 1. Qeybta Lacag Bixinta / Furo VIP -->
@@ -146,12 +146,14 @@
         import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "AIzaSyBYIOzKPhH7FKwVMnF2DZGdxKnyJ_hUjEc",
+            authDomain: "caruur-7a8ed.firebaseapp.com",
+            databaseURL: "https://caruur-7a8ed-default-rtdb.firebaseio.com",
+            projectId: "caruur-7a8ed",
+            storageBucket: "caruur-7a8ed.firebasestorage.app",
+            messagingSenderId: "586260137951",
+            appId: "1:586260137951:web:1fd58321b963a6dcffe66a",
+            measurementId: "G-X4RYC2YKDV"
         };
 
         const app = initializeApp(firebaseConfig);
