@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <!-- Payment Info View -->
+      <!-- Payment Info View (Hidden by default inside popup) -->
       <div id="popup-payment-view" class="hidden space-y-4 relative z-10 text-left">
         <h3 class="text-base font-bold text-amber-300 text-center">Macluumaadka Lacag-bixinta</h3>
         <div class="bg-white/10 p-4 rounded-2xl border border-white/20 space-y-2.5 text-xs">
@@ -51,7 +51,7 @@
           <p class="font-bold text-sm bg-black/20 p-2 rounded-xl text-center tracking-wide">E-BIRR / KAAFI: <span class="text-amber-300">0905445005</span></p>
           <p>Magaca: <span class="font-bold">MOOGE OMER EMAN</span></p>
           
-          <!-- WhatsApp Link -->
+          <!-- Updated WhatsApp Link Section -->
           <div class="pt-2 border-t border-white/10 text-center">
             <a href="https://wa.me/251987103141?text=Asc%2C%20waxaan%20bixiyay%20300%20Birr%20ee%20Dhallaan.com.%20Fadlan%20ii%20soo%20dir%20koodhkaaga%20gaarka%20ah." 
                target="_blank" 
@@ -69,10 +69,10 @@
       <!-- Code Verification View Inside Popup -->
       <div id="popup-code-view" class="hidden space-y-4 relative z-10">
         <h3 class="text-base font-bold text-amber-300">Geli Koodhkaaga Gaarka ah</h3>
-        <p class="text-xs opacity-90">Geli koodhkaaga u gaarka ah ee aad naga heshay si aad u furto Premium-ka.</p>
+        <p class="text-xs opacity-90">Geli koodhka aad ka heshay maamulka si aad u furto Premium-ka.</p>
         
         <div class="space-y-2">
-          <input type="text" id="popup-unique-code-input" placeholder="Tusaale: DHALLAAN-XXXX..." class="w-full px-4 py-2.5 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 text-sm focus:outline-none text-center font-bold tracking-wider uppercase">
+          <input type="text" id="popup-unique-code-input" placeholder="Tusaale: DHALLAAN-VIP..." class="w-full px-4 py-2.5 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 text-sm focus:outline-none text-center font-bold tracking-wider uppercase">
           <button id="verify-popup-code-btn" class="w-full py-2.5 bg-amber-400 text-slate-900 font-extrabold rounded-xl shadow hover:bg-amber-300 transition text-sm">
             Xaqiiji Koodhka
           </button>
@@ -95,6 +95,7 @@
         <p id="brand-subtitle" class="text-xs font-medium opacity-95">Dunida Dhallaanka & Sheekooyinka</p>
       </div>
 
+      <!-- Top Right Nav / User Status Area -->
       <div class="relative">
         <button id="nav-user-btn" class="flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full transition text-sm font-semibold">
           <span id="nav-user-label">Akoon</span>
@@ -103,6 +104,7 @@
           </svg>
         </button>
 
+        <!-- Dropdown menu -->
         <div id="nav-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white text-slate-800 rounded-xl shadow-lg border border-slate-100 p-2 space-y-1 z-50">
           <div id="dropdown-logged-out-options">
             <button id="dropdown-login" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-lg hover:bg-slate-100 text-teal-600">Soo gal (Login)</button>
@@ -118,8 +120,10 @@
 
     <main class="max-w-md mx-auto p-4 space-y-6 mt-2">
       
-      <!-- FREEMIUM HOME VIEW -->
+      <!-- ================= FREEMIUM / NORMAL HOMEPAGE CONTENT ================= -->
       <div id="freemium-home-view" class="space-y-6">
+        
+        <!-- Upgrade Banner for Freemium Users -->
         <div class="bg-gradient-to-r from-amber-500 to-orange-500 p-4 rounded-2xl text-white shadow-md flex justify-between items-center">
           <div>
             <h3 class="font-extrabold text-sm">Nooca Joogtada ah (Free)</h3>
@@ -130,6 +134,7 @@
           </button>
         </div>
 
+        <!-- Cloud Account Section -->
         <section class="space-y-3">
           <div class="flex items-center space-x-2 border-l-4 border-teal-500 pl-3">
             <h2 class="text-xl font-bold text-slate-900">Akoonka Isticmaalaha</h2>
@@ -176,6 +181,7 @@
           </div>
         </section>
 
+        <!-- Stories Section (Freemium preview) -->
         <section class="space-y-3">
           <div class="border-l-4 border-teal-500 pl-3 flex justify-between items-center">
             <h2 class="text-xl font-bold text-slate-900">Sheekooyinka Caadiga ah</h2>
@@ -191,10 +197,13 @@
             </button>
           </div>
         </section>
+
       </div>
 
-      <!-- PREMIUM HOME VIEW -->
+      <!-- ================= PREMIUM / EXCLUSIVE VIP HOMEPAGE CONTENT ================= -->
       <div id="premium-home-view" class="hidden space-y-6">
+        
+        <!-- VIP Active Status Banner -->
         <div class="bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 p-5 rounded-3xl text-slate-900 shadow-xl space-y-2 border-2 border-amber-300">
           <div class="flex items-center justify-between">
             <span class="bg-slate-900 text-amber-300 text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-widest">VIP Member 🌟</span>
@@ -204,6 +213,7 @@
           <p class="text-xs font-medium text-slate-800">Akoonkaagu wuxuu leeyahay oggolaansho buuxa oo ah 300 Birr bishii.</p>
         </div>
 
+        <!-- Exclusive VIP Content Section -->
         <section class="space-y-3">
           <div class="border-l-4 border-amber-500 pl-3">
             <h2 class="text-xl font-bold text-slate-900">Sheekooyinka Gaarka ah ee VIP-da</h2>
@@ -218,8 +228,18 @@
               </div>
               <button class="px-3 py-2 bg-amber-500 text-slate-900 font-bold text-xs rounded-xl shadow hover:bg-amber-400 transition">Akhriso</button>
             </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-amber-200 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-bold bg-amber-100 text-amber-700 px-2 py-0.5 rounded-md">Audio VIP</span>
+                <h4 class="text-sm font-bold text-slate-900 mt-1">100 Sheeko Xikmad Leh (Cod)</h4>
+                <p class="text-xs text-slate-500">Dhageyso codadka sheekooyinka oo dhan.</p>
+              </div>
+              <button class="px-3 py-2 bg-amber-500 text-slate-900 font-bold text-xs rounded-xl shadow hover:bg-amber-400 transition">Dhagayso</button>
+            </div>
           </div>
         </section>
+
       </div>
 
     </main>
@@ -249,7 +269,7 @@
     <div class="text-[11px] text-slate-500 pt-2 border-t border-slate-800">&copy; 2026 DHALLAAN.COM. Xuquuqda oo dhan waa la dhowray.</div>
   </footer>
 
-  <!-- Firebase & UI Script with Real Database Code Verification -->
+  <!-- Firebase & UI Script -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
@@ -260,18 +280,10 @@
       signOut, 
       onAuthStateChanged 
     } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
-    import { 
-      getDatabase, 
-      ref, 
-      get, 
-      child, 
-      update 
-    } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBYIOzKPhH7FKwVMnF2DZGdxKnyJ_hUjEc",
       authDomain: "caruur-7a8ed.firebaseapp.com",
-      databaseURL: "https://caruur-7a8ed-default-rtdb.firebaseio.com",
       projectId: "caruur-7a8ed",
       storageBucket: "caruur-7a8ed.firebasestorage.app",
       messagingSenderId: "586260137951",
@@ -282,7 +294,6 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
-    const db = getDatabase(app);
 
     // Elements for Popup Views
     const welcomePopup = document.getElementById('welcome-popup');
@@ -307,7 +318,7 @@
     const premiumHomeView = document.getElementById('premium-home-view');
     const logoutVipBtn = document.getElementById('logout-vip-btn');
 
-    // Check VIP status from LocalStorage
+    // Check if user is already VIP via LocalStorage
     function checkVipStatus() {
       const isVip = localStorage.getItem('dhallaan_vip_active');
       if (isVip === 'true') {
@@ -366,45 +377,19 @@
       if (e.target === welcomePopup) closeWelcomePopup();
     });
 
-    // ================= FIREBASE DATABASE CODE VERIFICATION =================
-    verifyPopupCodeBtn.addEventListener('click', async () => {
-      const enteredCode = popupUniqueCodeInput.value.trim();
-      if (!enteredCode) {
-        codeErrorMsg.textContent = "Fadlan geli koodhka.";
-        return;
-      }
+    // Verify Unique Code Logic
+    verifyPopupCodeBtn.addEventListener('click', () => {
+      const enteredCode = popupUniqueCodeInput.value.trim().toUpperCase();
+      const validCode = "VIP-300"; 
 
-      codeErrorMsg.textContent = "Fadlan sug...";
-
-      try {
-        const dbRef = ref(db);
-        // Waxay ka raadinaysaa database-ka halka ay ku hoos jirto 'vip_codes/'
-        const snapshot = await get(child(dbRef, `vip_codes/${enteredCode}`));
-
-        if (snapshot.exists()) {
-          const codeData = snapshot.val();
-          
-          // Hubi inaan horay loo isticmaalin (Haddii aad rabto in hal mar la isticmaalo)
-          if (codeData.used === true) {
-            codeErrorMsg.textContent = "Koodhkan horay ayaa loo isticmaalay!";
-            return;
-          }
-
-          // Calaamadi in la isticmaalay (Optional: si aan mar labaad loo isticmaalin)
-          await update(ref(db, `vip_codes/${enteredCode}`), {
-            used: true
-          });
-
-          localStorage.setItem('dhallaan_vip_active', 'true');
-          codeErrorMsg.textContent = "";
-          welcomePopup.classList.add('hidden');
-          checkVipStatus();
-          alert("Hambalyo! Si guul leh ayaa loo xaqiijiyay koodhkaaga VIP-da.");
-        } else {
-          codeErrorMsg.textContent = "Koodhkani ma sax ahan ama waa khalad.";
-        }
-      } catch (error) {
-        codeErrorMsg.textContent = "Khalad dhacay: " + error.message;
+      if (enteredCode === validCode || enteredCode.startsWith("DHALLAAN")) {
+        localStorage.setItem('dhallaan_vip_active', 'true');
+        codeErrorMsg.textContent = "";
+        welcomePopup.classList.add('hidden');
+        checkVipStatus();
+        alert("Hambalyo! Si guul leh ayaa loo xaqiijiyay koodhkaaga VIP-da.");
+      } else {
+        codeErrorMsg.textContent = "Koodhkani ma sax ahan. Fadlan hubi ama nagala soo xiriir.";
       }
     });
 
@@ -415,7 +400,7 @@
       welcomePopup.classList.remove('hidden');
     });
 
-    // Firebase Auth & General UI Controls
+    // UI Elements & Firebase Auth toggles
     const defaultLandingView = document.getElementById('default-landing-view');
     const formHeaderView = document.getElementById('form-header-view');
     const formTitle = document.getElementById('form-title');
