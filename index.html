@@ -9,14 +9,14 @@
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
 
-    <!-- Header / Navbar -->
-    <header class="bg-slate-800/90 backdrop-blur-md border-b border-slate-700 py-4 px-6 sticky top-0 z-50 shadow-md">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-black text-indigo-400 tracking-wider">DHALLAAN<span class="text-white">.COM</span></h1>
-            <nav class="space-x-4 text-sm text-slate-300 hidden md:block">
-                <a href="#" class="hover:text-indigo-400 transition">Bogga Hore</a>
-                <a href="#services" class="hover:text-indigo-400 transition">Adeegyada</a>
-                <a href="#vipSection" class="hover:text-indigo-400 transition">Gelitaanka VIP</a>
+    <!-- Header / Navbar - Centered Title -->
+    <header class="bg-slate-800/90 backdrop-blur-md border-b border-slate-700 py-5 px-6 sticky top-0 z-50 shadow-md">
+        <div class="max-w-6xl mx-auto flex flex-col items-center justify-center space-y-2">
+            <h1 class="text-3xl font-black text-indigo-400 tracking-wider text-center">DHALLAAN<span class="text-white">.COM</span></h1>
+            <nav class="space-x-6 text-xs md:text-sm text-slate-300">
+                <a href="#" class="hover:text-indigo-400 transition font-medium">Bogga Hore</a>
+                <a href="#services" class="hover:text-indigo-400 transition font-medium">Adeegyada</a>
+                <a href="#vipSection" class="hover:text-indigo-400 transition font-medium">Gelitaanka VIP</a>
             </nav>
         </div>
     </header>
@@ -24,32 +24,44 @@
     <!-- Main Content Area -->
     <main class="max-w-6xl mx-auto px-4 py-8 space-y-12 w-full">
         
-        <!-- Hero Section -->
-        <section class="text-center space-y-4 py-6 relative">
+        <!-- Hero Section with Image & Differentiated Titles -->
+        <section class="text-center space-y-6 py-4 relative">
             <div class="absolute inset-0 -z-10 flex items-center justify-center">
                 <div class="w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl"></div>
             </div>
-            <h2 class="text-3xl md:text-5xl font-extrabold text-white leading-tight">
-                Ku soo dhowow <span class="text-indigo-400">DHALLAAN.COM</span>
-            </h2>
-            <p class="text-slate-300 text-sm md:text-base max-w-2xl mx-auto font-light">
-                Barta ugu fiican ee loogu talagalay barashada, korriimada, iyo madadaalada carruurtaada adigoo helaya casharro iyo agab gaar ah.
+            
+            <div class="space-y-2">
+                <span class="text-xs uppercase tracking-widest text-indigo-400 font-bold bg-indigo-950/60 px-3 py-1 rounded-full border border-indigo-500/30">Dunida Carruurta & Horumarinta</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                    Ku soo dhowow <span class="text-indigo-400">DHALLAAN.COM</span>
+                </h2>
+            </div>
+
+            <p class="text-slate-300 text-sm md:text-base max-w-2xl mx-auto font-light leading-relaxed">
+                Barta ugu fiican ee loogu talagalay barashada, korriimada, iyo madadaalada carruurtaada adigoo helaya casharro iyo agab gaar ah oo tayo leh.
             </p>
+
+            <!-- Added Image Here -->
+            <div class="max-w-2xl mx-auto pt-2">
+                <div class="overflow-hidden rounded-3xl border-2 border-slate-700 shadow-2xl bg-slate-800">
+                    <img src="1000102810.jpg" alt="Carruur faraxsan oo ciyaaraya" class="w-full h-64 md:h-80 object-cover hover:scale-105 transition duration-500">
+                </div>
+            </div>
         </section>
 
         <!-- Public Services / Free Section -->
         <section id="services" class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 shadow-lg hover:border-indigo-500/50 transition duration-300">
                 <h3 class="text-lg font-bold text-indigo-300 mb-2">📚 Sheekooyin Carruureed</h3>
-                <p class="text-slate-300 text-xs">Sheekooyin akhlaaq xambaarsan oo ay carruurtu ka baranayaan anshaxa iyo aqoonta asaasiga ah.</p>
+                <p class="text-slate-300 text-xs leading-relaxed">Sheekooyin akhlaaq xambaarsan oo ay carruurtu ka baranayaan anshaxa iyo aqoonta asaasiga ah.</p>
             </div>
             <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 shadow-lg hover:border-indigo-500/50 transition duration-300">
                 <h3 class="text-lg font-bold text-indigo-300 mb-2">🎨 Sawirro iyo Midabaynta</h3>
-                <p class="text-slate-300 text-xs">Agab fudud oo carruurtu ku horumarinayaan hal-abuurkooda fanka iyo maskaxda.</p>
+                <p class="text-slate-300 text-xs leading-relaxed">Agab fudud oo carruurtu ku horumarinayaan hal-abuurkooda fanka iyo maskaxda.</p>
             </div>
             <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 shadow-lg hover:border-indigo-500/50 transition duration-300">
                 <h3 class="text-lg font-bold text-indigo-300 mb-2">🔤 Xuruufta & Tirada</h3>
-                <p class="text-slate-300 text-xs">Casharro muuqaal iyo maqal leh oo fududeynaya barashada xuruufta iyo xisaabta.</p>
+                <p class="text-slate-300 text-xs leading-relaxed">Casharro muuqaal iyo maqal leh oo fududeynaya barashada xuruufta iyo xisaabta.</p>
             </div>
         </section>
 
