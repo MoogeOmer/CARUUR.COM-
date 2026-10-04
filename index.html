@@ -1,490 +1,201 @@
 <!DOCTYPE html>
 <html lang="so">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Caruur.com - Sheekooyin & Waxbarasho</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
-
-  <!-- Welcome Popup Modal (Marka uu user-ka soo galo ayuu soo baxayaa) -->
-  <div id="welcome-popup" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
-    <div class="bg-gradient-to-br from-cyan-600 to-teal-700 text-white w-full max-w-md rounded-3xl p-6 shadow-2xl space-y-5 text-center relative overflow-hidden">
-      
-      <!-- Background Image Overlay effect from Image 2 -->
-      <div class="absolute inset-0 opacity-15 bg-cover bg-center pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=600&auto=format&fit=crop');"></div>
-
-      <div class="relative z-10 space-y-4">
-        <h2 class="text-xl font-extrabold tracking-wide leading-snug">
-          Dhiirrigeli akhriska iyo waxbarashada carruurtaada in ka badan 40,000 oo sheekooyin iyo buugag ah.
-        </h2>
-
-        <div class="space-y-3 pt-2">
-          <button id="popup-family-btn" class="w-full py-3 bg-white text-rose-500 font-extrabold rounded-full shadow-lg hover:bg-slate-100 transition text-sm">
-            Tijaabada Bilaashka ah ee Qoysaska
-          </button>
-          
-          <p class="text-xs font-medium opacity-90">Bilow kaliya $7.25/bishii</p>
-
-          <button id="popup-educator-btn" class="w-full py-3 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition text-sm">
-            Bilaash u ah Macallimiinta
-          </button>
-        </div>
-        
-        <div class="pt-2">
-          <button id="close-popup-btn" class="text-xs text-white/80 hover:text-white underline font-medium">
-            Iska xir / Noqo bogga weyn
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Header / Navbar Section -->
-  <div>
-    <header class="bg-gradient-to-r from-orange-400 to-rose-400 text-white p-4 shadow-lg flex justify-between items-center rounded-b-3xl relative">
-      <div>
-        <h1 class="text-2xl font-extrabold tracking-wide">Caruur.com</h1>
-        <p class="text-xs font-medium opacity-95">Sheekooyin Xikmad leh & Waxbarasho</p>
-      </div>
-
-      <!-- Top Right Nav / User Status Area -->
-      <div class="relative">
-        <button id="nav-user-btn" class="flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full transition text-sm font-semibold">
-          <span id="nav-user-label">Akoon</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.654 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-        </button>
-
-        <!-- Dropdown menu -->
-        <div id="nav-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white text-slate-800 rounded-xl shadow-lg border border-slate-100 p-2 space-y-1 z-50">
-          <!-- Logged-out options -->
-          <div id="dropdown-logged-out-options">
-            <button id="dropdown-login" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-lg hover:bg-slate-100 text-teal-600">Soo gal (Login)</button>
-            <button id="dropdown-signup" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-lg hover:bg-slate-100 text-rose-500">Is-diiwaangeli</button>
-          </div>
-          <!-- Logged-in option (Logout only) -->
-          <div id="dropdown-logged-in-options" class="hidden">
-            <button id="dropdown-logout" class="w-full text-left px-3 py-2 text-xs font-semibold rounded-lg hover:bg-rose-50 text-rose-600">Ka Bax (Log Out)</button>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <main class="max-w-md mx-auto p-4 space-y-6 mt-2">
-      
-      <!-- Cloud Account Section -->
-      <section class="space-y-3">
-        <div class="flex items-center space-x-2 border-l-4 border-teal-500 pl-3">
-          <h2 class="text-xl font-bold text-slate-900">Akoonka Isticmaalaha</h2>
-        </div>
-
-        <!-- Auth Container Box -->
-        <div id="auth-container" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
-          
-          <!-- Default Landing Header -->
-          <div id="default-landing-view">
-            <h3 class="text-lg font-bold text-teal-600">Soo dhowow!</h3>
-            <p class="text-xs text-slate-500 mt-1">Fadlan ka gal akoonkaaga badhanka sare ee midig ama is-diiwaangeli.</p>
-          </div>
-
-          <!-- Form Header (Dynamic - Hidden by default) -->
-          <div id="form-header-view" class="hidden">
-            <h3 id="form-title" class="text-lg font-bold text-teal-600">Soo gal (Login)</h3>
-            <p id="form-desc" class="text-xs text-slate-500 mt-1">Geli xogtaada si aad akoonkaaga u gasho.</p>
-          </div>
-
-          <!-- Inputs and Actions Form (Hidden by default) -->
-          <div id="auth-form" class="hidden space-y-3">
-            <div class="space-y-3">
-              <div>
-                <input type="email" id="email" autocomplete="email" placeholder="Email-kaaga" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-teal-500 text-sm bg-slate-50/50">
-              </div>
-              <div>
-                <input type="password" id="password" autocomplete="current-password" placeholder="Furahaaga (Password)" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-teal-500 text-sm bg-slate-50/50">
-              </div>
-              <button id="action-btn" class="w-full py-2.5 bg-teal-500 text-white font-semibold rounded-xl shadow-md hover:bg-teal-600 transition text-sm">
-                Soo gal
-              </button>
-            </div>
-
-            <!-- Toggle Mode Link -->
-            <div class="text-center pt-1">
-              <button id="toggle-mode-btn" class="text-xs text-slate-500 hover:text-teal-600 font-medium">
-                Ma leedahay akoon cusub? <span class="text-teal-600 underline">Is-diiwaangeli (Sign Up)</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Logged-In User Panel (Hidden when logged out) -->
-          <div id="logged-in-panel" class="hidden space-y-3 text-center py-2">
-            <p class="text-sm font-semibold text-slate-700">Waxaad si guul leh ugu jirtaa akoonka:<br><span id="user-display-name" class="text-teal-600 font-bold"></span></p>
-            <button id="main-logout-btn" class="w-full py-2.5 bg-rose-500 text-white font-semibold rounded-xl shadow-md hover:bg-rose-600 transition text-sm">
-              Ka Bax (Log Out)
-            </button>
-          </div>
-
-          <!-- Feedback Message Area -->
-          <div id="auth-message" class="text-xs text-center font-medium mt-2"></div>
-        </div>
-      </section>
-
-      <!-- Stories Section -->
-      <section class="space-y-3">
-        <div class="border-l-4 border-teal-500 pl-3 flex justify-between items-center">
-          <h2 class="text-xl font-bold text-slate-900">Sheekooyinka Cigaal Shidaad & Xikmad</h2>
-        </div>
-        
-        <!-- Kaarka Sheekada -->
-        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 space-y-4 text-center">
-          <h3 class="text-xl font-extrabold text-red-500">Cigaal Shidaad: Ninkii Cabsanaa</h3>
-          <p class="text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
-            Sheekada qosolka iyo casharka badan ee geesinmada carruurta la barayo.
-          </p>
-          
-          <!-- Badhanka Akhriso -->
-          <button id="open-story-btn" class="w-full sm:w-auto px-8 py-3 bg-teal-500 text-white font-bold rounded-xl shadow hover:bg-teal-600 transition text-sm">
-            Akhriso Sheekada
-          </button>
-        </div>
-      </section>
-
-      <!-- PDF Section -->
-      <section class="space-y-3">
-        <div class="border-l-4 border-teal-500 pl-3">
-          <h2 class="text-xl font-bold text-slate-900">Qaybta PDF-yada (Books & PDFs)</h2>
-        </div>
-        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 space-y-3">
-          <div class="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-100">
-            <div class="flex items-center space-x-3">
-              <div class="bg-rose-100 text-rose-500 p-2.5 rounded-lg font-bold text-xs">PDF</div>
-              <div>
-                <h4 class="text-xs font-bold text-slate-800">Buugga Sheekooyinka Carruurta (Vol. 1)</h4>
-                <p class="text-[10px] text-slate-400">15 Bog • 2.4 MB</p>
-              </div>
-            </div>
-            <button class="px-3 py-1.5 bg-teal-500 text-white text-xs font-semibold rounded-lg shadow hover:bg-teal-600 transition">Soo Deji</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Games Section -->
-      <section class="space-y-3">
-        <div class="border-l-4 border-teal-500 pl-3">
-          <h2 class="text-xl font-bold text-slate-900">Ciyaaraha Carruurta (Games)</h2>
-        </div>
-        <div class="grid grid-cols-2 gap-3">
-          <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 text-center space-y-2">
-            <div class="text-2xl">🧩</div>
-            <h4 class="font-bold text-slate-800 text-xs">Xujooyinka Maskaxda</h4>
-            <button class="w-full py-1.5 bg-orange-50 text-orange-600 font-semibold text-xs rounded-xl hover:bg-orange-100 transition">Ciir</button>
-          </div>
-          <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 text-center space-y-2">
-            <div class="text-2xl">🎨</div>
-            <h4 class="font-bold text-slate-800 text-xs">Midabaynta Sawirada</h4>
-            <button class="w-full py-1.5 bg-teal-50 text-teal-600 font-semibold text-xs rounded-xl hover:bg-teal-100 transition">Ciir</button>
-          </div>
-        </div>
-      </section>
-
-    </main>
-  </div>
-
-  <!-- Story Modal -->
-  <div id="story-modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-lg rounded-3xl p-6 shadow-2xl space-y-4 max-h-[85vh] overflow-y-auto relative">
-      <!-- Top Bar inside Modal -->
-      <div class="flex justify-between items-center border-b pb-3">
-        <h3 class="text-lg font-bold text-red-500">Cigaal Shidaad: Ninkii Cabsanaa</h3>
-        <div class="flex items-center space-x-2">
-          <!-- Mic / Audio Read Button (🎤) -->
-          <button id="read-aloud-btn" title="Dhageyso codka" class="p-2 bg-teal-100 hover:bg-teal-200 text-teal-700 rounded-full transition text-lg">
-            🎤
-          </button>
-          <!-- Close Modal Button -->
-          <button id="close-modal-btn" class="text-slate-400 hover:text-slate-700 font-bold text-xl px-2">
-            &times;
-          </button>
-        </div>
-      </div>
-
-      <!-- Full Story Text Content -->
-      <div id="story-full-text" class="text-sm text-slate-700 space-y-3 leading-relaxed">
-        <p>Cigaal Shidaad wuxuu ahaa nin caan ku ahaa cabsi iyo taxaddar aad u daran. Maalin 
-        uun ayuu safar ku marayay dhul duur ah oo ay ka buuxaan xayawaan badeed iyo duurjoog 
-        kale oo halis ah.</p>
-        <p>Markii uu sii socday, ayuu maqlay shanqor xooggan oo geedaha dhexooda ka imanaysa. 
-        Cabsi darteed, Cigaal wuxuu ku booday geed weyn dushiis, halkaas oo uu muddo saarnaa 
-        isaga oo gariiraya.</p>
-        <p>Markii ay dabeyshu qabowday oo uu si fiican u eegay, wuxuu ogaaday in neefkii uu ka baqayay 
-        uu ahaa oo kaliya dibi yar oo dagan oo caws daaqaya. Halkaas waxaa uga soo baxday cashar 
-        weyn oo ah in cabsidu mararka qaarkood wayyeyso xaqiiqda jirta.</p>
-      </div>
-
-      <!-- Close Button Bottom -->
-      <button id="close-modal-footer-btn" class="w-full py-2.5 bg-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-300 transition text-sm">
-        Xir Sheekada
-      </button>
-    </div>
-  </div>
-
-  <!-- Footer Section -->
-  <footer class="bg-slate-900 text-slate-400 text-center py-6 px-4 mt-8 space-y-3 rounded-t-3xl">
-    <p class="text-sm font-bold text-white tracking-wide">Caruur.com</p>
-    <p class="text-xs">Sheekooyin Xikmad leh, Waxbarasho, iyo Madadaalo loogu talagalay carruurta Soomaaliyeed.</p>
-    <div class="text-[11px] text-slate-500 pt-2 border-t border-slate-800">
-      &copy; 2026 Caruur.com. Xuquuqda oo dhan waa la dhowray.
-    </div>
-  </footer>
-
-  <!-- Firebase & UI Script -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
-    import { 
-      getAuth, 
-      createUserWithEmailAndPassword, 
-      signInWithEmailAndPassword, 
-      signOut, 
-      onAuthStateChanged 
-    } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyBYIOzKPhH7FKwVMnF2DZGdxKnyJ_hUjEc",
-      authDomain: "caruur-7a8ed.firebaseapp.com",
-      projectId: "caruur-7a8ed",
-      storageBucket: "caruur-7a8ed.firebasestorage.app",
-      messagingSenderId: "586260137951",
-      appId: "1:586260137951:web:1fd58321b963a6dcffe66a",
-      measurementId: "G-X4RYC2YKDV"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const auth = getAuth(app);
-
-    // Welcome Popup Elements
-    const welcomePopup = document.getElementById('welcome-popup');
-    const closePopupBtn = document.getElementById('close-popup-btn');
-    const popupFamilyBtn = document.getElementById('popup-family-btn');
-    const popupEducatorBtn = document.getElementById('popup-educator-btn');
-
-    function closeWelcomePopup() {
-      welcomePopup.classList.add('hidden');
-    }
-
-    closePopupBtn.addEventListener('click', closeWelcomePopup);
-    popupFamilyBtn.addEventListener('click', closeWelcomePopup);
-    popupEducatorBtn.addEventListener('click', closeWelcomePopup);
-    welcomePopup.addEventListener('click', (e) => {
-      if (e.target === welcomePopup) closeWelcomePopup();
-    });
-
-    // UI Elements
-    const defaultLandingView = document.getElementById('default-landing-view');
-    const formHeaderView = document.getElementById('form-header-view');
-    const formTitle = document.getElementById('form-title');
-    const formDesc = document.getElementById('form-desc');
-    const authForm = document.getElementById('auth-form');
-    const actionBtn = document.getElementById('action-btn');
-    const toggleModeBtn = document.getElementById('toggle-mode-btn');
-    const authMessage = document.getElementById('auth-message');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    
-    const loggedInPanel = document.getElementById('logged-in-panel');
-    const userDisplayName = document.getElementById('user-display-name');
-    const mainLogoutBtn = document.getElementById('main-logout-btn');
-
-    // Nav elements
-    const navUserBtn = document.getElementById('nav-user-btn');
-    const navDropdown = document.getElementById('nav-dropdown');
-    const dropdownLogin = document.getElementById('dropdown-login');
-    const dropdownSignup = document.getElementById('dropdown-signup');
-    const dropdownLogout = document.getElementById('dropdown-logout');
-    const dropdownLoggedOutOptions = document.getElementById('dropdown-logged-out-options');
-    const dropdownLoggedInOptions = document.getElementById('dropdown-logged-in-options');
-    const navUserLabel = document.getElementById('nav-user-label');
-
-    // Story Modal Elements
-    const openStoryBtn = document.getElementById('open-story-btn');
-    const storyModal = document.getElementById('story-modal');
-    const closeModalBtn = document.getElementById('close-modal-btn');
-    const closeModalFooterBtn = document.getElementById('close-modal-footer-btn');
-    const readAloudBtn = document.getElementById('read-aloud-btn');
-    const storyFullText = document.getElementById('story-full-text');
-
-    // Open Story Modal
-    openStoryBtn.addEventListener('click', () => {
-      storyModal.classList.remove('hidden');
-    });
-
-    // Close Story Modal functions
-    function closeStoryModal() {
-      storyModal.classList.add('hidden');
-      window.speechSynthesis.cancel();
-    }
-    closeModalBtn.addEventListener('click', closeStoryModal);
-    closeModalFooterBtn.addEventListener('click', closeStoryModal);
-    storyModal.addEventListener('click', (e) => {
-      if (e.target === storyModal) closeStoryModal();
-    });
-
-    // Text-to-Speech (Mic 🎤 Button functionality)
-    readAloudBtn.addEventListener('click', () => {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const textToRead = storyFullText.innerText;
-        const utterance = new SpeechSynthesisUtterance(textToRead);
-        utterance.lang = 'so-SO';
-        utterance.rate = 0.9;
-        
-        readAloudBtn.classList.add('animate-pulse', 'bg-rose-200');
-        utterance.onend = () => {
-          readAloudBtn.classList.remove('animate-pulse', 'bg-rose-200');
-        };
-        
-        window.speechSynthesis.speak(utterance);
-      } else {
-        alert('Codka akhriska (Speech Synthesis) kama shaqeeyo biraawsarkan.');
-      }
-    });
-
-    let isLoginMode = true;
-
-    // Toggle Dropdown Menu in Navbar
-    navUserBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navDropdown.classList.toggle('hidden');
-    });
-
-    window.addEventListener('click', () => {
-      navDropdown.classList.add('hidden');
-    });
-
-    // Show Login Form when clicked in dropdown
-    dropdownLogin.addEventListener('click', () => {
-      isLoginMode = true;
-      showFormView();
-      navDropdown.classList.add('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Show Signup Form when clicked in dropdown
-    dropdownSignup.addEventListener('click', () => {
-      isLoginMode = false;
-      showFormView();
-      navDropdown.classList.add('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    function showFormView() {
-      defaultLandingView.classList.add('hidden');
-      formHeaderView.classList.remove('hidden');
-      authForm.classList.remove('hidden');
-      loggedInPanel.classList.add('hidden');
-      updateFormMode();
-    }
-
-    function updateFormMode() {
-      authMessage.textContent = '';
-      if (isLoginMode) {
-        formTitle.textContent = "Soo gal (Login)";
-        formTitle.className = "text-lg font-bold text-teal-600";
-        formDesc.textContent = "Geli xogtaada si aad akoonkaaga u gasho.";
-        actionBtn.textContent = "Soo gal";
-        actionBtn.className = "w-full py-2.5 bg-teal-500 text-white font-semibold rounded-xl shadow-md hover:bg-teal-600 transition text-sm";
-        toggleModeBtn.innerHTML = `Ma leedahay akoon cusub? <span class="text-teal-600 underline">Is-diiwaangeli (Sign Up)</span>`;
-      } else {
-        formTitle.textContent = "Is-diiwaangeli (Sign Up)";
-        formTitle.className = "text-lg font-bold text-rose-500";
-        formDesc.textContent = "Abuuri akoon daruuri ah si aad meel kasta uga gasho.";
-        actionBtn.textContent = "Is-diiwaangeli";
-        actionBtn.className = "w-full py-2.5 bg-rose-500 text-white font-semibold rounded-xl shadow-md hover:bg-rose-600 transition text-sm";
-        toggleModeBtn.innerHTML = `Ma leedahay akoon hore? <span class="text-teal-600 underline">Soo gal (Login)</span>`;
-      }
-    }
-
-    toggleModeBtn.addEventListener('click', () => {
-      isLoginMode = !isLoginMode;
-      updateFormMode();
-    });
-
-    // Handle Form Action Button Click
-    actionBtn.addEventListener('click', async () => {
-      const email = emailInput.value.trim();
-      const password = passwordInput.value;
-      authMessage.textContent = '';
-
-      if (!email || !password) {
-        authMessage.className = "text-xs text-center font-medium mt-2 text-rose-500";
-        authMessage.textContent = "Fadlan buuxi email-ka iyo furaha (password).";
-        return;
-      }
-
-      try {
-        if (isLoginMode) {
-          await signInWithEmailAndPassword(auth, email, password);
-        } else {
-          await createUserWithEmailAndPassword(auth, email, password);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHALLAAN.COM Subscription</title>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #0f766e 0%, #042f2e 100%);
+            --accent-pink: #ec4899;
+            --btn-pink-gradient: linear-gradient(135deg, #f43f5e 0%, #db2777 100%);
+            --text-color: #ffffff;
+            --modal-bg: rgba(6, 78, 59, 0.95);
         }
-      } catch (error) {
-        authMessage.className = "text-xs text-center font-medium mt-2 text-rose-600";
-        authMessage.textContent = `Khalad: ${error.message}`;
-      }
-    });
 
-    // Logout Actions
-    const handleLogout = async () => {
-      try {
-        await signOut(auth);
-      } catch (error) {
-        console.error("Logout error", error);
-      }
-    };
-    mainLogoutBtn.addEventListener('click', handleLogout);
-    dropdownLogout.addEventListener('click', handleLogout);
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111827;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-    // Monitor Auth State Changes Live
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const username = user.email.split('@')[0];
+        /* Overlay Background */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
 
-        // Update Nav bar area & dropdown options
-        navUserLabel.textContent = username;
-        navUserBtn.classList.add('bg-teal-600', 'text-white');
-        dropdownLoggedOutOptions.classList.add('hidden');
-        dropdownLoggedInOptions.classList.remove('hidden');
+        /* Modal Box */
+        .modal-card {
+            background: var(--modal-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            width: 100%;
+            max-width: 420px;
+            border-radius: 24px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            color: var(--text-color);
+            position: relative;
+            animation: scaleUp 0.3s ease-out forwards;
+        }
 
-        // Update Main Card Section for Logged-In State
-        defaultLandingView.classList.add('hidden');
-        formHeaderView.classList.remove('hidden');
-        formTitle.textContent = "Akoonkaaga";
-        formTitle.className = "text-lg font-bold text-slate-900";
-        formDesc.textContent = "Waxaad si guul leh ugu jirtaa akoonkaaga.";
-        authForm.classList.add('hidden');
-        loggedInPanel.classList.remove('hidden');
+        @keyframes scaleUp {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
 
-        userDisplayName.textContent = user.email;
-        authMessage.textContent = '';
-      } else {
-        // Reset Nav bar area & dropdown options
-        navUserLabel.textContent = "Akoon";
-        navUserBtn.classList.remove('bg-teal-600', 'text-white');
-        dropdownLoggedInOptions.classList.add('hidden');
-        dropdownLoggedOutOptions.classList.remove('hidden');
+        /* Titles & Text */
+        .brand-title {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #5eead4;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
 
-        // Reset Main Card Section back to clean landing state (no form showing)
-        defaultLandingView.classList.remove('hidden');
-        formHeaderView.classList.add('hidden');
-        authForm.classList.add('hidden');
-        loggedInPanel.classList.add('hidden');
-        emailInput.value = '';
-        passwordInput.value = '';
-      }
-    });
-  </script>
+        .brand-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .modal-message {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        /* Pricing Text */
+        .pricing-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fbcfe8;
+            margin-bottom: 16px;
+        }
+
+        /* Buttons */
+        .btn-premium {
+            display: block;
+            width: 100%;
+            background: var(--btn-pink-gradient);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+            margin-bottom: 12px;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.6);
+        }
+
+        .btn-close {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 8px;
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+
+        .btn-close:hover {
+            color: #ffffff;
+        }
+
+        /* Payment Info View (Hidden by default, shown on click) */
+        .payment-info {
+            display: none;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 16px;
+            text-align: left;
+            font-size: 14px;
+            line-height: 1.5;
+            border: 1px dashed #5eead4;
+        }
+
+        .payment-info h4 {
+            margin: 0 0 8px 0;
+            color: #5eead4;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-card">
+            <!-- Header elements -->
+            <div class="brand-title">DHALLAAN.COM</div>
+            <div class="brand-subtitle">( kusoo dhawaw dunida dhallaanka )</div>
+
+            <!-- Main Message -->
+            <div class="modal-message">
+                Dhiirrigeli akhriska iyo waxbarashada carruurtaada.
+            </div>
+
+            <!-- Pricing info -->
+            <div class="pricing-text">kaliya 300 birr bishii</div>
+
+            <!-- Premium Button -->
+            <button class="btn-premium" id="premiumBtn" onclick="showPaymentInfo()">
+                Hadda Is-diiwaangeli (Premium)
+            </button>
+
+            <!-- Payment Information Box (Appears when Premium is clicked) -->
+            <div class="payment-info" id="paymentDetails">
+                <h4>Macluumaadka Lacag-bixinta:</h4>
+                <p><strong>Ku bixi EBIRR KAAFI:</strong> 0905445005</p>
+                <p><strong>Magaca:</strong> MOOGE OMER EMAN</p>
+            </div>
+
+            <br>
+            <!-- Close Button -->
+            <button class="btn-close" onclick="closeModal()">Iska xir / Noqo bogga weyn</button>
+        </div>
+    </div>
+
+    <script>
+        function showPaymentInfo() {
+            const paymentDiv = document.getElementById('paymentDetails');
+            paymentDiv.style.display = paymentDiv.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
