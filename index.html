@@ -16,7 +16,7 @@
             <nav class="space-x-4 text-sm text-slate-300 hidden md:block">
                 <a href="#" class="hover:text-indigo-400 transition">Bogga Hore</a>
                 <a href="#services" class="hover:text-indigo-400 transition">Adeegyada</a>
-                <a href="#verification" class="hover:text-indigo-400 transition">Hubinta VIP</a>
+                <a href="#vipSection" class="hover:text-indigo-400 transition">Gelitaanka VIP</a>
             </nav>
         </div>
     </header>
@@ -50,32 +50,64 @@
             </div>
         </section>
 
-        <!-- VIP Verification Section -->
-        <section id="verification" class="max-w-md mx-auto w-full bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700">
-            <h2 class="text-xl font-bold mb-2 text-center text-indigo-300">Geli Koodhkaaga VIP</h2>
-            <p class="text-slate-400 text-xs mb-5 text-center">Geli koodhkaaga gaarka ah si aad u furto qaybta Premium-ka ee xiran.</p>
+        <!-- VIP Access & Login Section -->
+        <section id="vipSection" class="max-w-md mx-auto w-full bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 space-y-6">
+            
+            <!-- Tab Switches -->
+            <div class="flex border-b border-slate-700 pb-3">
+                <button onclick="switchTab('payment')" id="tabPaymentBtn" class="flex-1 text-center font-bold text-indigo-400 pb-2 border-b-2 border-indigo-500 text-sm">Furo VIP (Lacag Bixinta)</button>
+                <button onclick="switchTab('login')" id="tabLoginBtn" class="flex-1 text-center font-semibold text-slate-400 pb-2 text-sm">Galitaanka (Login)</button>
+            </div>
 
-            <div class="space-y-4">
-                <div>
-                    <label for="vipInput" class="block text-xs font-medium text-slate-300 mb-1">Koodhka VIP-da:</label>
-                    <input type="text" id="vipInput" placeholder="Tusaale: MITS-4829" 
-                        class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-indigo-500 text-white uppercase placeholder-slate-400 text-sm">
+            <!-- 1. Qeybta Lacag Bixinta / Furo VIP -->
+            <div id="paymentView" class="space-y-4">
+                <h2 class="text-xl font-bold text-center text-indigo-300">Hel VIP-gaaga</h2>
+                <p class="text-slate-400 text-xs text-center">Riix badhanka hoose si aad u aragto hababka lacag-bixinta oo aad u hesho Username & Password.</p>
+                
+                <button onclick="showPaymentInfo()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition duration-200 text-sm shadow-md">
+                    💳 Eeg Macluumaadka Lacag-bixinta
+                </button>
+
+                <!-- Macluumaadka Lacag-bixinta oo qarsoon ilaa la riixo -->
+                <div id="paymentInfoBox" class="hidden bg-slate-900 p-4 rounded-xl border border-slate-700 text-xs space-y-2 text-slate-300">
+                    <p class="font-bold text-indigo-400">Hababka Lacagta:</p>
+                    <p>📌 Telebirr: <span class="text-white font-mono">0912345678</span></p>
+                    <p>📌 Bankiga: <span class="text-white font-mono">1000234567891</span></p>
+                    <p class="text-amber-400 pt-1">Fiiro gaar ah: Lacagta dir kadib, la xiriir maamulka si laguu siiyo Username iyo Password-kaaga gaarka ah.</p>
+                </div>
+            </div>
+
+            <!-- 2. Qeybta Login-ka (Username & Password) -->
+            <div id="loginView" class="space-y-4 hidden">
+                <h2 class="text-xl font-bold text-center text-indigo-300">Gal Akoonkaaga VIP</h2>
+                <p class="text-slate-400 text-xs text-center">Geli Username iyo Password-kaaga si aad u gashid qaybta Premium-ka.</p>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Username:</label>
+                        <input type="text" id="usernameInput" placeholder="Tusaale: ahmed_vip" 
+                            class="w-full px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-indigo-500 text-white text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Password:</label>
+                        <input type="password" id="passwordInput" placeholder="••••••••" 
+                            class="w-full px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-indigo-500 text-white text-sm">
+                    </div>
                 </div>
 
-                <button onclick="handleVerification()" 
-                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition duration-200 text-sm shadow-md">
-                    Xaqiiji Koodhka
+                <button onclick="handleLogin()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-lg transition duration-200 text-sm shadow-md">
+                    Gal (Login)
                 </button>
             </div>
 
-            <!-- Fariinta ka soo baxeysa -->
-            <div id="resultMessage" class="mt-4 text-center text-xs font-medium hidden p-3 rounded-lg"></div>
+            <!-- Fariinta System-ka -->
+            <div id="resultMessage" class="mt-2 text-center text-xs font-medium hidden p-3 rounded-lg"></div>
         </section>
 
         <!-- Protected Premium Content (Hidden by default) -->
         <section id="premiumContent" class="hidden bg-emerald-950/40 border border-emerald-500/50 p-8 rounded-2xl text-center space-y-4 max-w-2xl mx-auto">
             <h3 class="text-2xl font-bold text-emerald-400">✨ Ku soo dhowow Qeybta Gaarka ah (Premium Content)!</h3>
-            <p class="text-sm text-slate-300">Hambalyo! Koodhkaagii waa la xaqiijiyay. Hadda waxaad si xor ah u heli kartaa dhammaan casharrada gaarka ah, buugaagta dhijitaalka ah, iyo agabka horumarinta carruurta.</p>
+            <p class="text-sm text-slate-300">Hambalyo! Si guul leh ayaad u gashay akoonkaaga VIP-da. Hadda waxaad si xor ah u heli kartaa dhammaan casharrada gaarka ah iyo buugaagta dhijitaalka ah.</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
                 <div class="bg-slate-800 p-4 rounded-xl border border-emerald-500/30">
                     <h4 class="font-bold text-emerald-300 text-sm">📖 Buugga Koowaad ee Carruurta</h4>
@@ -86,6 +118,9 @@
                     <p class="text-xs text-slate-400 mt-1">Dhageyso sheekooyin xiiso leh oo jiifka ka hor ah.</p>
                 </div>
             </div>
+            <div class="pt-4">
+                <button onclick="handleLogout()" class="bg-red-600/80 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Ka Bax (Logout)</button>
+            </div>
         </section>
 
     </main>
@@ -95,73 +130,145 @@
         <p>&copy; 2026 DHALLAAN.COM. Xuquuqda oo dhan waa la dhowray.</p>
     </footer>
 
-    <!-- JavaScript-ka Hubinta, 100-ka Koodh, iyo LocalStorage -->
-    <script>
-        // Kaydka bilowga ah ee 100-ka koodh
-        const defaultCodes = {
-            "MITS-4829": { used: false }, "MITS-7143": { used: false }, "MITS-2390": { used: false }, "MITS-9430": { used: false }, "MITS-5128": { used: false },
-            "MITS-8461": { used: false }, "MITS-3192": { used: false }, "MITS-6547": { used: false }, "MITS-1823": { used: false }, "MITS-9034": { used: false },
-            "MITS-2458": { used: false }, "MITS-7912": { used: false }, "MITS-4385": { used: false }, "MITS-6129": { used: false }, "MITS-3841": { used: false },
-            "MITS-9562": { used: false }, "MITS-1274": { used: false }, "MITS-8310": { used: false }, "MITS-5942": { used: false }, "MITS-2067": { used: false },
-            "MITS-7491": { used: false }, "MITS-3158": { used: false }, "MITS-6832": { used: false }, "MITS-4219": { used: false }, "MITS-9124": { used: false },
-            "MITS-1653": { used: false }, "MITS-8047": { used: false }, "MITS-2938": { used: false }, "MITS-5310": { used: false }, "MITS-6794": { used: false },
-            "MITS-3581": { used: false }, "MITS-8920": { used: false }, "MITS-1469": { used: false }, "MITS-7235": { used: false }, "MITS-4912": { used: false },
-            "MITS-6031": { used: false }, "MITS-2845": { used: false }, "MITS-9173": { used: false }, "MITS-5382": { used: false }, "MITS-1926": { used: false },
-            "MITS-7408": { used: false }, "MITS-3619": { used: false }, "MITS-8524": { used: false }, "MITS-2109": { used: false }, "MITS-6483": { used: false },
-            "MITS-4710": { used: false }, "MITS-9325": { used: false }, "MITS-1842": { used: false }, "MITS-5691": { used: false }, "MITS-3048": { used: false },
-            "MITS-7195": { used: false }, "MITS-2584": { used: false }, "MITS-8931": { used: false }, "MITS-4123": { used: false }, "MITS-6379": { used: false },
-            "MITS-1492": { used: false }, "MITS-9840": { used: false }, "MITS-3267": { used: false }, "MITS-5712": { used: false }, "MITS-8094": { used: false },
-            "MITS-2341": { used: false }, "MITS-6580": { used: false }, "MITS-4198": { used: false }, "MITS-9431": { used: false }, "MITS-1725": { used: false },
-            "MITS-7864": { used: false }, "MITS-3059": { used: false }, "MITS-5283": { used: false }, "MITS-8942": { used: false }, "MITS-1630": { used: false },
-            "MITS-6412": { used: false }, "MITS-3981": { used: false }, "MITS-7204": { used: false }, "MITS-5169": { used: false }, "MITS-2834": { used: false },
-            "MITS-9512": { used: false }, "MITS-4301": { used: false }, "MITS-8673": { used: false }, "MITS-1945": { used: false }, "MITS-6238": { used: false },
-            "MITS-3419": { used: false }, "MITS-7824": { used: false }, "MITS-5031": { used: false }, "MITS-9165": { used: false }, "MITS-2784": { used: false },
-            "MITS-6342": { used: false }, "MITS-1509": { used: false }, "MITS-8421": { used: false }, "MITS-4956": { used: false }, "MITS-3210": { used: false },
-            "MITS-7643": { used: false }, "MITS-2198": { used: false }, "MITS-6072": { used: false }, "MITS-9384": { used: false }, "MITS-1850": { used: false },
-            "MITS-5421": { used: false }, "MITS-8109": { used: false }, "MITS-3672": { used: false }, "MITS-4731": { used: false }, "MITS-6925": { used: false }
+    <!-- JavaScript-ka Login-ka, Tab-yada, iyo Single-Browser Locking -->
+    <script type="module">
+        // 1. Soo dejinta Firebase SDK (Haddii aad Firebase isticmaalayso)
+        // Ka beddel xogtan hoose middaada markaad Firebase ku xidhayso
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
         };
 
-        // Soo rar xogta LocalStorage ama isticmaal default-ka
-        let vipCodesDatabase = JSON.parse(localStorage.getItem('dhallaan_vip_db')) || defaultCodes;
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-        function handleVerification() {
-            const inputField = document.getElementById('vipInput');
+        // Abuur ama hel Aqoonsiga Browser-kan hadda (Unique Device ID)
+        let myBrowserId = localStorage.getItem('dhallaan_browser_uuid');
+        if (!myBrowserId) {
+            myBrowserId = 'BID-' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            localStorage.setItem('dhallaan_browser_uuid', myBrowserId);
+        }
+
+        // Hubi haddii user-ku hore u soo galay (Session Check)
+        window.addEventListener('DOMContentLoaded', () => {
+            const activeUser = localStorage.getItem('dhallaan_active_user');
+            if (activeUser) {
+                document.getElementById('vipSection').classList.add('hidden');
+                document.getElementById('premiumContent').classList.remove('hidden');
+            }
+        });
+
+        // Shaqada beddelka Tab-yada (Payment vs Login)
+        window.switchTab = function(tab) {
+            const paymentView = document.getElementById('paymentView');
+            const loginView = document.getElementById('loginView');
+            const paymentBtn = document.getElementById('tabPaymentBtn');
+            const loginBtn = document.getElementById('tabLoginBtn');
+            const resultDiv = document.getElementById('resultMessage');
+
+            resultDiv.classList.add('hidden');
+
+            if (tab === 'payment') {
+                paymentView.classList.remove('hidden');
+                loginView.classList.add('hidden');
+                paymentBtn.className = "flex-1 text-center font-bold text-indigo-400 pb-2 border-b-2 border-indigo-500 text-sm";
+                loginBtn.className = "flex-1 text-center font-semibold text-slate-400 pb-2 text-sm";
+            } else {
+                paymentView.classList.add('hidden');
+                loginView.classList.remove('hidden');
+                loginBtn.className = "flex-1 text-center font-bold text-indigo-400 pb-2 border-b-2 border-indigo-500 text-sm";
+                paymentBtn.className = "flex-1 text-center font-semibold text-slate-400 pb-2 text-sm";
+            }
+        }
+
+        window.showPaymentInfo = function() {
+            const infoBox = document.getElementById('paymentInfoBox');
+            infoBox.classList.toggle('hidden');
+        }
+
+        // Shaqada Login-ka oo xaqiijinaysa Single-Browser Security
+        window.handleLogin = async function() {
+            const username = document.getElementById('usernameInput').value.trim().toLowerCase();
+            const password = document.getElementById('passwordInput').value.trim();
             const resultDiv = document.getElementById('resultMessage');
             const premiumBox = document.getElementById('premiumContent');
-            const userCode = inputField.value.trim().toUpperCase();
+            const vipSection = document.getElementById('vipSection');
 
-            // Nadiifi fariimihii hore
             resultDiv.classList.remove('hidden', 'text-emerald-400', 'bg-emerald-950', 'text-red-400', 'bg-red-950', 'text-amber-400', 'bg-amber-950');
 
-            if (!userCode) {
-                resultDiv.textContent = "Fadlan geli koodh marka hore!";
+            if (!username || !password) {
+                resultDiv.textContent = "Fadlan geli Username iyo Password!";
                 resultDiv.classList.add('text-amber-400', 'bg-amber-950/50', 'block');
                 return;
             }
 
-            // Hubi in koodhku jiro keydka
-            if (vipCodesDatabase.hasOwnProperty(userCode)) {
-                if (!vipCodesDatabase[userCode].used) {
-                    resultDiv.textContent = "Guul! Koodhkan waa sax, Premium-kii waa furmay.";
-                    resultDiv.classList.add('text-emerald-400', 'bg-emerald-950/50', 'block');
-                    
-                    // Calaamadi in la isticmaalay
-                    vipCodesDatabase[userCode].used = true;
+            resultDiv.textContent = "Waa la hubinayaa...";
+            resultDiv.classList.add('text-indigo-400', 'bg-indigo-950/50', 'block');
 
-                    // Ku kaydi xaaladda LocalStorage
-                    localStorage.setItem('dhallaan_vip_db', JSON.stringify(vipCodesDatabase));
+            try {
+                // Ka raadi xogta user-ka Firestore collection-ka 'users'
+                const userDocRef = doc(db, "users", username);
+                const userSnap = await getDoc(userDocRef);
 
-                    // Tus qeybtii qarsoonayd ee Premium-ka
-                    premiumBox.classList.remove('hidden');
-                    inputField.disabled = true;
+                if (userSnap.exists()) {
+                    const userData = userSnap.data();
+
+                    // 1. Hubi in Password-ku sax yahay
+                    if (userData.password === password) {
+                        
+                        // 2. Xakamaynta Hal Browser (Single-Browser Lock)
+                        // Haddii uu akoonku hore u lahaa boundBrowserId oo ka duwan kan qalabkan:
+                        if (userData.boundBrowserId && userData.boundBrowserId !== myBrowserId) {
+                            resultDiv.textContent = "Waan ka xumahay, akoonkan waxaa horay looga furay qalab kale. Hal akoon lagama wada gali karo laba qalab!";
+                            resultDiv.classList.remove('text-indigo-400', 'bg-indigo-950/50');
+                            resultDiv.classList.add('text-red-400', 'bg-red-950/50');
+                            return;
+                        }
+
+                        // Haddii uusan qof kalena lahayn ama uu yahay kii hore, ku xir browser-kan
+                        if (!userData.boundBrowserId) {
+                            await updateDoc(userDocRef, { boundBrowserId: myBrowserId });
+                        }
+
+                        resultDiv.textContent = "Guul! Si sax ah ayaad u gashay.";
+                        resultDiv.classList.remove('text-indigo-400', 'bg-indigo-950/50');
+                        resultDiv.classList.add('text-emerald-400', 'bg-emerald-950/50');
+
+                        // Kaydi session-ka maxalliga ah
+                        localStorage.setItem('dhallaan_active_user', username);
+
+                        vipSection.classList.add('hidden');
+                        premiumBox.classList.remove('hidden');
+
+                    } else {
+                        resultDiv.textContent = "Password-ka waa qalad!";
+                        resultDiv.classList.remove('text-indigo-400', 'bg-indigo-950/50');
+                        resultDiv.classList.add('text-red-400', 'bg-red-950/50');
+                    }
                 } else {
-                    resultDiv.textContent = "Waan ka xumahay, koodhkan horay ayaa loo isticmaalay!";
-                    resultDiv.classList.add('text-red-400', 'bg-red-950/50', 'block');
+                    resultDiv.textContent = "Username-kan ma jiro!";
+                    resultDiv.classList.remove('text-indigo-400', 'bg-indigo-950/50');
+                    resultDiv.classList.add('text-red-400', 'bg-red-950/50');
                 }
-            } else {
-                resultDiv.textContent = "Koodhkani ma jiro ama waa mid khalad ah!";
-                resultDiv.classList.add('text-red-400', 'bg-red-950/50', 'block');
+            } catch (error) {
+                console.error("Login error:", error);
+                resultDiv.textContent = "Cillad xagga shabakadda ah ayaa dhacday.";
+                resultDiv.classList.remove('text-indigo-400', 'bg-indigo-950/50');
+                resultDiv.classList.add('text-red-400', 'bg-red-950/50');
             }
+        }
+
+        // Shaqada Logout-ka
+        window.handleLogout = function() {
+            localStorage.removeItem('dhallaan_active_user');
+            location.reload();
         }
     </script>
 </body>
