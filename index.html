@@ -269,7 +269,7 @@
     <div class="text-[11px] text-slate-500 pt-2 border-t border-slate-800">&copy; 2026 DHALLAAN.COM. Xuquuqda oo dhan waa la dhowray.</div>
   </footer>
 
-  <!-- Firebase & UI Script -->
+  <!-- Firebase & UI Script with Real Database Code Verification -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
@@ -280,10 +280,18 @@
       signOut, 
       onAuthStateChanged 
     } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+    import { 
+      getDatabase, 
+      ref, 
+      get, 
+      child, 
+      update 
+    } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBYIOzKPhH7FKwVMnF2DZGdxKnyJ_hUjEc",
       authDomain: "caruur-7a8ed.firebaseapp.com",
+      databaseURL: "https://caruur-7a8ed-default-rtdb.firebaseio.com",
       projectId: "caruur-7a8ed",
       storageBucket: "caruur-7a8ed.firebasestorage.app",
       messagingSenderId: "586260137951",
@@ -294,6 +302,7 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
+    const db = getDatabase(app); // Halkan waxaa ku xirmaya Realtime Database-ka
 
     // Elements for Popup Views
     const welcomePopup = document.getElementById('welcome-popup');
@@ -377,19 +386,46 @@
       if (e.target === welcomePopup) closeWelcomePopup();
     });
 
-    // Verify Unique Code Logic
-    verifyPopupCodeBtn.addEventListener('click', () => {
-      const enteredCode = popupUniqueCodeInput.value.trim().toUpperCase();
-      const validCode = "VIP-300"; 
+    // ================= SECURE SINGLE-USE DATABASE CODE VERIFICATION =================
+    verifyPopupCodeBtn.addEventListener('click', async () => {
+      const enteredCode = popupUniqueCodeInput.value.trim();
+      if (!enteredCode) {
+        codeErrorMsg.textContent = "Fadlan geli koodhkaaga.";
+        return;
+      }
 
-      if (enteredCode === validCode || enteredCode.startsWith("DHALLAAN")) {
-        localStorage.setItem('dhallaan_vip_active', 'true');
-        codeErrorMsg.textContent = "";
-        welcomePopup.classList.add('hidden');
-        checkVipStatus();
-        alert("Hambalyo! Si guul leh ayaa loo xaqiijiyay koodhkaaga VIP-da.");
-      } else {
-        codeErrorMsg.textContent = "Koodhkani ma sax ahan. Fadlan hubi ama nagala soo xiriir.";
+      codeErrorMsg.textContent = "Fadlan sug... Waa la hubinayaa koodhka.";
+
+      try {
+        const dbRef = ref(db);
+        // Waxay ka raadineysaa database-ka halka ay ku hoos jirto 'vip_codes/'
+        const snapshot = await get(child(dbRef, `vip_codes/${enteredCode}`));
+
+        if (snapshot.exists()) {
+          const codeData = snapshot.val();
+          
+          // Hubi in horay loo isticmaalay iyo in kale
+          if (codeData.used === true) {
+            codeErrorMsg.textContent = "Koodhkan horay ayaa loo isticmaalay mana shaqeynayo markii labaad!";
+            return;
+          }
+
+          // Calaamadi in koodhkan hadda la isticmaalay (used: true) si aan mar dambe loo isticmaali karin
+          await update(ref(db, `vip_codes/${enteredCode}`), {
+            used: true
+          });
+
+          // Ka dhig qofka VIP
+          localStorage.setItem('dhallaan_vip_active', 'true');
+          codeErrorMsg.textContent = "";
+          welcomePopup.classList.add('hidden');
+          checkVipStatus();
+          alert("Hambalyo! Si guul leh ayaa loo xaqiijiyay koodhkaaga VIP-da.");
+        } else {
+          codeErrorMsg.textContent = "Koodhkani ma jiro ama waa mid khalad ah.";
+        }
+      } catch (error) {
+        codeErrorMsg.textContent = "Khalad dhacay: " + error.message;
       }
     });
 
