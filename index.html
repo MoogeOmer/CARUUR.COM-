@@ -68,12 +68,22 @@
                     💳 Eeg Macluumaadka Lacag-bixinta
                 </button>
 
-                <!-- Macluumaadka Lacag-bixinta oo qarsoon ilaa la riixo -->
-                <div id="paymentInfoBox" class="hidden bg-slate-900 p-4 rounded-xl border border-slate-700 text-xs space-y-2 text-slate-300">
-                    <p class="font-bold text-indigo-400">Hababka Lacagta:</p>
-                    <p>📌 Telebirr: <span class="text-white font-mono">0912345678</span></p>
-                    <p>📌 Bankiga: <span class="text-white font-mono">1000234567891</span></p>
-                    <p class="text-amber-400 pt-1">Fiiro gaar ah: Lacagta dir kadib, la xiriir maamulka si laguu siiyo Username iyo Password-kaaga gaarka ah.</p>
+                <!-- Macluumaadka Lacag-bixinta Cusub -->
+                <div id="paymentInfoBox" class="hidden bg-slate-900 p-4 rounded-xl border border-slate-700 text-xs space-y-3 text-slate-300">
+                    <p class="font-bold text-indigo-400">Habka Lacagta:</p>
+                    <div class="bg-slate-800 p-3 rounded-lg border border-slate-700 space-y-1">
+                        <p class="font-bold text-emerald-400">📌 EBIRR KAAFI</p>
+                        <p>Number: <span class="text-white font-mono font-bold">0905445005</span></p>
+                        <p>Magaca: <span class="text-white font-bold">MOOGE OMER</span></p>
+                    </div>
+                    <p class="text-amber-400 text-center">Lacagta dir kadib, riix badhanka hoose si aad iigu soo dirto fariin WhatsApp ah oo wadata xaqiijintaada si laguu siiyo Username & Password-kaaga:</p>
+                    
+                    <!-- WhatsApp Direct Button -->
+                    <a href="https://wa.me/251987103141?text=Asc%20Maamule,%20waan%20bixiyay%20lacagtii%20Dhallaan.com%20Fadlan%20iigu%20soo%20dir%20Username%20iyo%20Password-kayga%20VIP-da." 
+                       target="_blank" 
+                       class="block w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-lg transition duration-200 text-xs shadow-md">
+                        💬 Nagala soo xiriir WhatsApp (+251987103141)
+                    </a>
                 </div>
             </div>
 
@@ -132,8 +142,6 @@
 
     <!-- JavaScript-ka Login-ka, Tab-yada, iyo Single-Browser Locking -->
     <script type="module">
-        // 1. Soo dejinta Firebase SDK (Haddii aad Firebase isticmaalayso)
-        // Ka beddel xogtan hoose middaada markaad Firebase ku xidhayso
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
@@ -149,14 +157,12 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Abuur ama hel Aqoonsiga Browser-kan hadda (Unique Device ID)
         let myBrowserId = localStorage.getItem('dhallaan_browser_uuid');
         if (!myBrowserId) {
             myBrowserId = 'BID-' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
             localStorage.setItem('dhallaan_browser_uuid', myBrowserId);
         }
 
-        // Hubi haddii user-ku hore u soo galay (Session Check)
         window.addEventListener('DOMContentLoaded', () => {
             const activeUser = localStorage.getItem('dhallaan_active_user');
             if (activeUser) {
@@ -165,7 +171,6 @@
             }
         });
 
-        // Shaqada beddelka Tab-yada (Payment vs Login)
         window.switchTab = function(tab) {
             const paymentView = document.getElementById('paymentView');
             const loginView = document.getElementById('loginView');
@@ -193,7 +198,6 @@
             infoBox.classList.toggle('hidden');
         }
 
-        // Shaqada Login-ka oo xaqiijinaysa Single-Browser Security
         window.handleLogin = async function() {
             const username = document.getElementById('usernameInput').value.trim().toLowerCase();
             const password = document.getElementById('passwordInput').value.trim();
@@ -213,18 +217,13 @@
             resultDiv.classList.add('text-indigo-400', 'bg-indigo-950/50', 'block');
 
             try {
-                // Ka raadi xogta user-ka Firestore collection-ka 'users'
                 const userDocRef = doc(db, "users", username);
                 const userSnap = await getDoc(userDocRef);
 
                 if (userSnap.exists()) {
                     const userData = userSnap.data();
 
-                    // 1. Hubi in Password-ku sax yahay
                     if (userData.password === password) {
-                        
-                        // 2. Xakamaynta Hal Browser (Single-Browser Lock)
-                        // Haddii uu akoonku hore u lahaa boundBrowserId oo ka duwan kan qalabkan:
                         if (userData.boundBrowserId && userData.boundBrowserId !== myBrowserId) {
                             resultDiv.textContent = "Waan ka xumahay, akoonkan waxaa horay looga furay qalab kale. Hal akoon lagama wada gali karo laba qalab!";
                             resultDiv.classList.remove('text-indigo-400', 'bg-indigo-950/50');
@@ -232,7 +231,6 @@
                             return;
                         }
 
-                        // Haddii uusan qof kalena lahayn ama uu yahay kii hore, ku xir browser-kan
                         if (!userData.boundBrowserId) {
                             await updateDoc(userDocRef, { boundBrowserId: myBrowserId });
                         }
@@ -241,7 +239,6 @@
                         resultDiv.classList.remove('text-indigo-400', 'bg-indigo-950/50');
                         resultDiv.classList.add('text-emerald-400', 'bg-emerald-950/50');
 
-                        // Kaydi session-ka maxalliga ah
                         localStorage.setItem('dhallaan_active_user', username);
 
                         vipSection.classList.add('hidden');
@@ -265,7 +262,6 @@
             }
         }
 
-        // Shaqada Logout-ka
         window.handleLogout = function() {
             localStorage.removeItem('dhallaan_active_user');
             location.reload();
