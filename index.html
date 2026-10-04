@@ -46,12 +46,21 @@
       <!-- Payment Info View (Hidden by default inside popup) -->
       <div id="popup-payment-view" class="hidden space-y-4 relative z-10 text-left">
         <h3 class="text-base font-bold text-amber-300 text-center">Macluumaadka Lacag-bixinta</h3>
-        <div class="bg-white/10 p-4 rounded-2xl border border-white/20 space-y-2 text-xs">
+        <div class="bg-white/10 p-4 rounded-2xl border border-white/20 space-y-2.5 text-xs">
           <p>Fadlan lacagta ku dir lambarka hoose:</p>
           <p class="font-bold text-sm bg-black/20 p-2 rounded-xl text-center tracking-wide">E-BIRR / KAAFI: <span class="text-amber-300">0905445005</span></p>
           <p>Magaca: <span class="font-bold">MOOGE OMER EMAN</span></p>
-          <p class="text-[11px] opacity-90 pt-1 border-t border-white/10">Markaad bixiso, fadlan nagala soo xiriir WhatsApp si aad u hesho Koodhkaaga gaarka ah (Unique Code).</p>
+          
+          <!-- Updated WhatsApp Link Section -->
+          <div class="pt-2 border-t border-white/10 text-center">
+            <a href="https://wa.me/251987103141?text=Asc%2C%20waxaan%20bixiyay%20300%20Birr%20ee%20Dhallaan.com.%20Fadlan%20ii%20soo%20dir%20koodhkaaga%20gaarka%20ah." 
+               target="_blank" 
+               class="inline-block w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-md transition text-center text-xs">
+              💬 Haddii Aad bixisay Halkan taabo si aad u heshid code kaaga
+            </a>
+          </div>
         </div>
+
         <button id="back-to-main-from-pay" class="w-full py-2.5 bg-white/20 hover:bg-white/30 text-white font-bold rounded-xl text-xs transition">
           &larr; Dib u noqo
         </button>
@@ -368,10 +377,9 @@
       if (e.target === welcomePopup) closeWelcomePopup();
     });
 
-    // Verify Unique Code Logic (Tusaale ahaan koodhka waa VIP-300 ama kasta oo aad doorato)
+    // Verify Unique Code Logic
     verifyPopupCodeBtn.addEventListener('click', () => {
       const enteredCode = popupUniqueCodeInput.value.trim().toUpperCase();
-      // Halkan waxaad ku beddeli kartaa koodhka saxda ah ee aad adigu soo saareyso
       const validCode = "VIP-300"; 
 
       if (enteredCode === validCode || enteredCode.startsWith("DHALLAAN")) {
@@ -392,7 +400,7 @@
       welcomePopup.classList.remove('hidden');
     });
 
-    // UI Elements & Firebase Auth toggles (Sida hore)
+    // UI Elements & Firebase Auth toggles
     const defaultLandingView = document.getElementById('default-landing-view');
     const formHeaderView = document.getElementById('form-header-view');
     const formTitle = document.getElementById('form-title');
