@@ -3,65 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bogga Carruurta & Sheekooyinka</title>
+    <title>DHALLAAN.COM - Dunida Carruurta & Horumarinta</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
 
-    <!-- Qaybta Hordhaca / Sawirka -->
-    <div class="max-w-4xl mx-auto p-4 md:p-6">
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
-            <!-- Hubi in magaca sawirkaaga uu sax yahay ama GitHub ku jiro -->
-            <img src="1000102810.jpg" alt="Carruur faraxsan oo ciyaaraya" class="w-full h-64 md:h-80 object-cover hover:scale-105 transition duration-500">
-            <div class="p-6">
-                <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Ku soo dhowow Bogga Carruurta</h1>
-                <p class="text-gray-600">Halkan waxaad ka heli kartaa sawiro, sheekooyin xiiso leh, iyo waxqabadyo kale oo loogu talagalay carruurta.</p>
+    <!-- Header / Navbar - Centered Title -->
+    <header class="bg-slate-800/90 backdrop-blur-md border-b border-slate-700 py-5 px-6 sticky top-0 z-50 shadow-md">
+        <div class="max-w-6xl mx-auto flex flex-col items-center justify-center space-y-2">
+            <h1 class="text-3xl font-black text-indigo-400 tracking-wider text-center">DHALLAAN<span class="text-white">.COM</span></h1>
+            <nav class="space-x-6 text-xs md:text-sm text-slate-300">
+                <a href="#" class="hover:text-indigo-400 transition font-medium">Bogga Hore</a>
+                <a href="#services" class="hover:text-indigo-400 transition font-medium">Adeegyada</a>
+                <a href="#vipSection" class="hover:text-indigo-400 transition font-medium">Gelitaanka VIP</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-12 w-full">
+        
+        <!-- Hero Section with Image & Differentiated Titles -->
+        <section class="text-center space-y-6 py-4 relative">
+            <div class="absolute inset-0 -z-10 flex items-center justify-center">
+                <div class="w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl"></div>
             </div>
-        </div>
-
-        <!-- Qaybta Sanduuqa Sheekada (Story Box) -->
-        <div class="bg-white rounded-xl shadow-md p-6 mb-6 border border-gray-100">
-            <h2 class="text-xl font-bold text-gray-800 mb-2">Ciwaanka Sheekada: Safarkii Layaabka</h2>
-            <p class="text-gray-600 mb-4">Tani waa qoraal kooban ama hordhac ku saabsan sheekada oo soo jiidanaya akhristaha si uu u akhriyo faahfaahinta...</p>
             
-            <!-- Badhanka Akhriska -->
-            <button onclick="openModal()" class="bg-indigo-600 text-white px-5 py-2.5 rounded-lg hover:bg-indigo-700 transition duration-300 font-medium">
-                Read More
-            </button>
-        </div>
-    </div>
+            <div class="space-y-2">
+                <span class="text-xs uppercase tracking-widest text-indigo-400 font-bold bg-indigo-950/60 px-3 py-1 rounded-full border border-indigo-500/30">Dunida Carruurta & Horumarinta</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                    Ku soo dhowow <span class="text-indigo-400">DHALLAAN.COM</span>
+                </h2>
+            </div>
 
-    <!-- Sanduuqa Sheekada Buuxda (Modal / Popup) - Asal ahaan waa la qariyay (hidden) -->
-    <div id="storyModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden p-4 z-50">
-        <div class="bg-white rounded-2xl max-w-lg w-full p-6 relative shadow-2xl transform transition-all">
-            <!-- Ciwaanka Sheekada Buuxda -->
-            <h3 class="text-2xl font-bold text-gray-800 mb-3">Safarkii Layaabka - Sheekada oo Dhan</h3>
-            
-            <!-- Qoraalka Sheekada oo Faahfaahsan -->
-            <p class="text-gray-700 mb-6 leading-relaxed">
-                Halkan waxaa ku qoran sheekada oo buuxda. Waxaad ku dari kartaa faahfaahin dheeraad ah, sadarar badan, iyo sheekada oo dhan sidii aad u rabtay. Akhristayaashu waxay si raaxo leh uga dhex akhriyi karaan sanduuqan dushiisa adigoon bogga ka qaadin.
+            <p class="text-slate-300 text-sm md:text-base max-w-2xl mx-auto font-light leading-relaxed">
+                Barta ugu fiican ee loogu talagalay barashada, korriimada, iyo madadaalada carruurtaada adigoo helaya casharro iyo agab gaar ah oo tayo leh.
             </p>
+
+            <!-- Added Image Here -->
+            <div class="max-w-2xl mx-auto pt-2">
+                <div class="overflow-hidden rounded-3xl border-2 border-slate-700 shadow-2xl bg-slate-800">
+                    <img src="1000102810.jpg" alt="Carruur faraxsan oo ciyaaraya" class="w-full h-64 md:h-80 object-cover hover:scale-105 transition duration-500">
+                </div>
+            </div>
+        </section>
+
+        <!-- Public Services / Free Section -->
+        <section id="services" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 shadow-lg hover:border-indigo-500/50 transition duration-300">
+                <h3 class="text-lg font-bold text-indigo-300 mb-2">📚 Sheekooyin Carruureed</h3>
+                <p class="text-slate-300 text-xs leading-relaxed">Sheekooyin akhlaaq xambaarsan oo ay carruurtu ka baranayaan anshaxa iyo aqoonta asaasiga ah.</p>
+            </div>
+            <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 shadow-lg hover:border-indigo-500/50 transition duration-300">
+                <h3 class="text-lg font-bold text-indigo-300 mb-2">🎨 Sawirro iyo Midabaynta</h3>
+                <p class="text-slate-300 text-xs leading-relaxed">Agab fudud oo carruurtu ku horumarinayaan hal-abuurkooda fanka iyo maskaxda.</p>
+            </div>
+            <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 shadow-lg hover:border-indigo-500/50 transition duration-300">
+                <h3 class="text-lg font-bold text-indigo-300 mb-2">🔤 Xuruufta & Tirada</h3>
+                <p class="text-slate-300 text-xs leading-relaxed">Casharro muuqaal iyo maqal leh oo fududeynaya barashada xuruufta iyo xisaabta.</p>
+            </div>
+        </section>
+
+        <!-- VIP Access & Login Section -->
+        <section id="vipSection" class="max-w-md mx-auto w-full bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 space-y-6">
             
-            <!-- Badhanka Xiritaanka (Close) -->
-            <div class="text-right">
-                <button onclick="closeModal()" class="bg-red-500 text-white px-5 py-2 rounded-lg hover:bg-red-600 transition duration-300 font-medium">
-                    Close
+            <!-- Tab Switches -->
+            <div class="flex border-b border-slate-700 pb-3">
+                <button onclick="switchTab('payment')" id="tabPaymentBtn" class="flex-1 text-center font-bold text-indigo-400 pb-2 border-b-2 border-indigo-500 text-sm">Furo VIP (Lacag Bixinta)</button>
+                <button onclick="switchTab('login')" id="tabLoginBtn" class="flex-1 text-center font-semibold text-slate-400 pb-2 text-sm">Gelitaanka (Login)</button>
+            </div>
+
+            <!-- 1. Qeybta Lacag Bixinta / Furo VIP -->
+            <div id="paymentView" class="space-y-4">
+                <h2 class="text-xl font-bold text-center text-indigo-300">Hel VIP-gaaga</h2>
+                <p class="text-slate-300 text-xs text-center">Riix badhanka hoose si aad u aragto hababka lacag-bixinta oo aad u hesho Username & Password.</p>
+                
+                <button onclick="showPaymentInfo()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition duration-200 text-sm shadow-md">
+                    💳 Eeg Macluumaadka Lacag-bixinta
+                </button>
+
+                <!-- Macluumaadka Lacag-bixinta Cusub -->
+                <div id="paymentInfoBox" class="hidden bg-slate-900 p-4 rounded-xl border border-slate-700 text-xs space-y-3 text-slate-300">
+                    <p class="font-bold text-indigo-400">Habka Lacagta:</p>
+                    <div class="bg-slate-800 p-3 rounded-lg border border-slate-700 space-y-1">
+                        <p class="font-bold text-emerald-400">📌 EBIRR KAAFI</p>
+                        <p>Number: <span class="text-white font-mono font-bold">0905445005</span></p>
+                        <p>Magaca: <span class="text-white font-bold">MOOGE OMER</span></p>
+                    </div>
+                    <p class="text-amber-300 text-center">Lacagta dir kadib, riix badhanka hoose si aad iigu soo dirto fariin WhatsApp ah oo wadata xaqiijintaada si laguu siiyo Username & Password-kaaga:</p>
+                    
+                    <!-- WhatsApp Direct Button -->
+                    <a href="https://wa.me/251987103141?text=Asc%20Maamule,%20waan%20bixiyay%20lacagtii%20Dhallaan.com%20Fadlan%20iigu%20soo%20dir%20Username%20iyo%20Password-kayga%20VIP-da." 
+                       target="_blank" 
+                       class="block w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-lg transition duration-200 text-xs shadow-md">
+                        💬 Nagala soo xiriir WhatsApp (+251987103141)
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. Qeybta Login-ka (Username & Password) -->
+            <div id="loginView" class="space-y-4 hidden">
+                <h2 class="text-xl font-bold text-center text-indigo-300">Gal Akoonkaaga VIP</h2>
+                <p class="text-slate-300 text-xs text-center">Geli Username iyo Password-kaaga si aad u gashid qaybta Premium-ka.</p>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Username:</label>
+                        <input type="text" id="usernameInput" placeholder="Tusaale: ahmed_vip" 
+                            class="w-full px-4 py-2.5 bg-slate-900 border border-slate-600 rounded-lg focus:outline-none focus:border-indigo-500 text-white text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Password:</label>
+                        <input type="password" id="passwordInput" placeholder="••••••••" 
+                            class="w-full px-4 py-2.5 bg-slate-900 border border-slate-600 rounded-lg focus:outline-none focus:border-indigo-500 text-white text-sm">
+                    </div>
+                </div>
+
+                <button onclick="handleLogin()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-lg transition duration-200 text-sm shadow-md">
+                    Gal (Login)
                 </button>
             </div>
-        </div>
-    </div>
 
-    <!-- JavaScript si uu u furo oo u xiro sanduuqa -->
-    <script>
-        function openModal() {
-            document.getElementById('storyModal').classList.remove('hidden');
+            <!-- Fariinta System-ka -->
+            <div id="resultMessage" class="mt-2 text-center text-xs font-medium hidden p-3 rounded-lg"></div>
+        </section>
+
+        <!-- Protected Premium Content (Hidden by default) -->
+        <section id="premiumContent" class="hidden bg-slate-800 border border-emerald-500/50 p-8 rounded-2xl text-center space-y-4 max-w-2xl mx-auto shadow-xl">
+            <h3 class="text-2xl font-bold text-emerald-400">✨ Ku soo dhowow Qeybta Gaarka ah (Premium Content)!</h3>
+            <p class="text-sm text-slate-300">Hambalyo! Si guul leh ayaad u gashay akoonkaaga VIP-da. Hadda waxaad si xor ah u heli kartaa dhammaan casharrada gaarka ah iyo buugaagta dhijitaalka ah.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                <div class="bg-slate-900 p-4 rounded-xl border border-emerald-500/30">
+                    <h4 class="font-bold text-emerald-300 text-sm">📖 Buugga Koowaad ee Carruurta</h4>
+                    <p class="text-xs text-slate-400 mt-1">Soo deji buugga oo buuxa oo leh sawirro midab leh.</p>
+                </div>
+                <div class="bg-slate-900 p-4 rounded-xl border border-emerald-500/30">
+                    <h4 class="font-bold text-emerald-300 text-sm">🎧 Sheekooyinka Maqal</h4>
+                    <p class="text-xs text-slate-400 mt-1">Dhageyso sheekooyin xiiso leh oo jiifka ka hor ah.</p>
+                </div>
+            </div>
+            <div class="pt-4">
+                <button onclick="handleLogout()" class="bg-red-600/80 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Ka Bax (Logout)</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 border-t border-slate-700 py-6 text-center text-xs text-slate-400 mt-12">
+        <p>&copy; 2026 DHALLAAN.COM. Xuquuqda oo dhan waa la dhowray.</p>
+    </footer>
+
+    <!-- JavaScript-ka Login-ka, Tab-yada, iyo Single-Browser Locking -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBYIOzKPhH7FKwVMnF2DZGdxKnyJ_hUjEc",
+            authDomain: "caruur-7a8ed.firebaseapp.com",
+            databaseURL: "https://caruur-7a8ed-default-rtdb.firebaseio.com",
+            projectId: "caruur-7a8ed",
+            storageBucket: "caruur-7a8ed.firebasestorage.app",
+            messagingSenderId: "586260137951",
+            appId: "1:586260137951:web:1fd58321b963a6dcffe66a",
+            measurementId: "G-X4RYC2YKDV"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let myBrowserId = localStorage.getItem('dhallaan_browser_uuid');
+        if (!myBrowserId) {
+            myBrowserId = 'BID-' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            localStorage.setItem('dhallaan_browser_uuid', myBrowserId);
         }
 
-        function closeModal() {
-            document.getElementById('storyModal').classList.add('hidden');
+        window.addEventListener('DOMContentLoaded', () => {
+            const activeUser = localStorage.getItem('dhallaan_active_user');
+            if (activeUser) {
+                document.getElementById('vipSection').classList.add('hidden');
+                document.getElementById('premiumContent').classList.remove('hidden');
+            }
+        });
+
+        window.switchTab = function(tab) {
+            const paymentView = document.getElementById('paymentView');
+            const loginView = document.getElementById('loginView');
+            const paymentBtn = document.getElementById('tabPaymentBtn');
+            const loginBtn = document.getElementById('tabLoginBtn');
+            const resultDiv = document.getElementById('resultMessage');
+
+            resultDiv.classList.add('hidden');
+
+            if (tab === 'payment') {
+                paymentView.classList.remove('hidden');
+                loginView.classList.add('hidden');
+                paymentBtn.className = "flex-1 text-center font-bold text-indigo-400 pb-2 border-b-2 border-indigo-500 text-sm";
+                loginBtn.className = "flex-1 text-center font-semibold text-slate-400 pb-2 text-sm";
+            } else {
+                paymentView.classList.add('hidden');
+                loginView.classList.remove('hidden');
+                loginBtn.className = "flex-1 text-center font-bold text-indigo-400 pb-2 border-b-2 border-indigo-500 text-sm";
+                paymentBtn.className = "flex-1 text-center font-semibold text-slate-400 pb-2 text-sm";
+            }
+        }
+
+        window.showPaymentInfo = function() {
+            const infoBox = document.getElementById('paymentInfoBox');
+            infoBox.classList.toggle('hidden');
+        }
+
+        window.handleLogin = async function() {
+            const username = document.getElementById('usernameInput').value.trim().toLowerCase();
+            const password = document.getElementById('passwordInput').value.trim();
+            const resultDiv = document.getElementById('resultMessage');
+            const premiumBox = document.getElementById('premiumContent');
+            const vipSection = document.getElementById('vipSection');
+
+            resultDiv.classList.remove('hidden', 'text-emerald-400', 'bg-emerald-950', 'text-red-400', 'bg-red-950', 'text-amber-400', 'bg-amber-950');
+
+            if (!username || !password) {
+                resultDiv.textContent = "Fadlan geli Username iyo Password!";
+                resultDiv.classList.add('text-amber-400', 'bg-amber-950/50', 'block');
+                return;
+            }
+
+            resultDiv.textContent = "Waa la hubinayaa...";
+            resultDiv.classList.add('text-indigo-400', 'bg-indigo-950/50', 'block');
+
+            try {
+                const userDocRef = doc(db, "users", username);
+                const userSnap = await getDoc(userDocRef);
+
+                if (userSnap.exists()) {
+                    const userData = userSnap.data();
+
+                    if (userData.password === password) {
+                        if (userData.boundBrowserId && userData.boundBrowserId !== myBrowserId) {
+                            resultDiv.textContent = "Waan ka xumahay, akoonkan waxaa horay looga furay qalab kale. Hal akoon lagama wada gali karo laba qalab!";
+                            resultDiv.classList.remove('text-indigo-400', 'bg-indigo-950/50');
+                            resultDiv.classList.add('text-red-400', 'bg-red-950/50');
+                            return;
+                        }
+
+                        if (!userData.boundBrowserId) {
+                            await updateDoc(userDocRef, { boundBrowserId: myBrowserId });
+                        }
+
+                        resultDiv.textContent = "Guul! Si sax ah ayaad u gashay.";
+                        resultDiv.classList.remove('text-indigo-400', 'bg-indigo-950/50');
+                        resultDiv.classList.add('text-emerald-400', 'bg-emerald-950/50');
+
+                        localStorage.setItem('dhallaan_active_user', username);
+
+                        vipSection.classList.add('hidden');
+                        premiumBox.classList.remove('hidden');
+
+                    } else {
+                        resultDiv.textContent = "Password-ka waa qalad!";
+                        resultDiv.classList.remove('text-indigo-400', 'bg-indigo-950/50');
+                        resultDiv.classList.add('text-red-400', 'bg-red-950/50');
+                    }
+                } else {
+                    resultDiv.textContent = "Username-kan ma jiro!";
+                    resultDiv.classList.remove('text-indigo-400', 'bg-indigo-950/50');
+                    resultDiv.classList.add('text-red-400', 'bg-red-950/50');
+                }
+            } catch (error) {
+                console.error("Login error:", error);
+                resultDiv.textContent = "Cillad xagga shabakadda ah ayaa dhacday.";
+                resultDiv.classList.remove('text-indigo-400', 'bg-indigo-950/50');
+                resultDiv.classList.add('text-red-400', 'bg-red-950/50');
+            }
+        }
+
+        window.handleLogout = function() {
+            localStorage.removeItem('dhallaan_active_user');
+            location.reload();
         }
     </script>
-
 </body>
 </html>
+
