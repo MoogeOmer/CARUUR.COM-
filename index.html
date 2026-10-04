@@ -95,10 +95,10 @@
         <p>&copy; 2026 DHALLAAN.COM. Xuquuqda oo dhan waa la dhowray.</p>
     </footer>
 
-    <!-- JavaScript-ka Hubinta iyo 100-ka Koodh -->
+    <!-- JavaScript-ka Hubinta, 100-ka Koodh, iyo LocalStorage -->
     <script>
-        // 100-ka koodh ee VIP-da ah oo wata xaaladdooda (used: false)
-        const vipCodesDatabase = {
+        // Kaydka bilowga ah ee 100-ka koodh
+        const defaultCodes = {
             "MITS-4829": { used: false }, "MITS-7143": { used: false }, "MITS-2390": { used: false }, "MITS-9430": { used: false }, "MITS-5128": { used: false },
             "MITS-8461": { used: false }, "MITS-3192": { used: false }, "MITS-6547": { used: false }, "MITS-1823": { used: false }, "MITS-9034": { used: false },
             "MITS-2458": { used: false }, "MITS-7912": { used: false }, "MITS-4385": { used: false }, "MITS-6129": { used: false }, "MITS-3841": { used: false },
@@ -121,6 +121,9 @@
             "MITS-5421": { used: false }, "MITS-8109": { used: false }, "MITS-3672": { used: false }, "MITS-4731": { used: false }, "MITS-6925": { used: false }
         };
 
+        // Soo rar xogta LocalStorage ama isticmaal default-ka
+        let vipCodesDatabase = JSON.parse(localStorage.getItem('dhallaan_vip_db')) || defaultCodes;
+
         function handleVerification() {
             const inputField = document.getElementById('vipInput');
             const resultDiv = document.getElementById('resultMessage');
@@ -142,13 +145,14 @@
                     resultDiv.textContent = "Guul! Koodhkan waa sax, Premium-kii waa furmay.";
                     resultDiv.classList.add('text-emerald-400', 'bg-emerald-950/50', 'block');
                     
-                    // Calaamadi in koodhkan la isticmaalay si aan loo isticmaalin mar labaad
+                    // Calaamadi in la isticmaalay
                     vipCodesDatabase[userCode].used = true;
+
+                    // Ku kaydi xaaladda LocalStorage
+                    localStorage.setItem('dhallaan_vip_db', JSON.stringify(vipCodesDatabase));
 
                     // Tus qeybtii qarsoonayd ee Premium-ka
                     premiumBox.classList.remove('hidden');
-                    
-                    // Loo gudub ama u rog foomka mid xiran
                     inputField.disabled = true;
                 } else {
                     resultDiv.textContent = "Waan ka xumahay, koodhkan horay ayaa loo isticmaalay!";
